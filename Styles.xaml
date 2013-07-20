@@ -1,0 +1,16 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Style x:Key="WindowBasicStyle"
+               x:Name="WindowBasicStyle"
+               TargetType="Window">        
+        <Setter Property="Background" Value="DarkGray"/>
+        
+    </Style>
+    
+    <Style x:Key="WindowModernStyle"
+           x:Name="WindowsModernStyle"
+           TargetType="Window">
+        <Setter Property="BorderThickness" Value="0"/>
+    </Style>
+    
+</ResourceDictionary>

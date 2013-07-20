@@ -1,0 +1,56 @@
+﻿<Window x:Class="SignalProcessor.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="480" Width="640"
+        Style="{StaticResource WindowBasicStyle}"
+        >
+    <DockPanel>
+        <Menu
+            DockPanel.Dock="Top" HorizontalAlignment="Left"
+            Background="DarkGray"
+            BorderBrush="LightGray">
+            <MenuItem Header="File">
+                
+            </MenuItem>
+            
+            <MenuItem Header="View">
+                
+            </MenuItem>
+            
+            <MenuItem Header="Info">
+                
+            </MenuItem>
+            
+        </Menu>
+        
+        
+        <DockPanel>
+        
+            
+            <DockPanel x:Name="ControlPanel"
+                  >
+                <Grid x:Name="ControlGrid"
+                      DockPanel.Dock="Left"
+                      Width="170"
+                      Background="LightGray">
+                    
+                </Grid>
+                
+                
+                <Button x:Name="btnHider"
+                        Style="{StaticResource BasicHiderStyle}"                        
+                        >
+                </Button>
+                
+                
+            </DockPanel>
+
+            <StackPanel Orientation="Vertical">
+                
+            </StackPanel>
+            
+        </DockPanel>
+        
+        
+    </DockPanel>
+</Window>
