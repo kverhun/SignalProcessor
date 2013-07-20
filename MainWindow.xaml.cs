@@ -18,11 +18,27 @@ namespace SignalProcessor
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : Window, IView
     {
         public MainWindow()
         {
-            InitializeComponent();
+            
+
+            this.vm = new ViewModel(this);
+
+
+
+            
+           
+            //ControlGrid.Visibility = Visibility.Hidden;
         }
+
+        public ViewModel vm;
+        private void btnHider_Click(object sender, RoutedEventArgs e)
+        {
+            btnHideCtrlClick(sender, e);
+
+        }
+        public event EventHandler<EventArgs> btnHideCtrlClick;
     }
 }

@@ -7,6 +7,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary x:Name="StylesWindow" Source="Styles.xaml" />
                 <ResourceDictionary x:Name="StylesHider" Source="StylesHider.xaml" />
+                
             </ResourceDictionary.MergedDictionaries>
             
         </ResourceDictionary>
