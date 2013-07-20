@@ -10,24 +10,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-using SignalProcessor.ModelLogic;
-
-namespace SignalProcessor
+namespace SignalProcessor.ViewLogic
 {
-    public class ViewModel
+    /// <summary>
+    /// Interaction logic for ImportWindow.xaml
+    /// </summary>
+    public partial class ImportWindow : Window
     {
-        public ViewModel(IView view)
+        public ImportWindow()
         {
-            this.view = view;
-            model = new Model();
+            InitializeComponent();
         }
-
         
-
-        private IView view;
-        private Model model;
     }
 }

@@ -1,15 +1,17 @@
 ﻿<Application x:Class="SignalProcessor.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             StartupUri="MainWindow.xaml">
+             StartupUri="ViewLogic\MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary x:Name="StylesWindow" Source="Styles.xaml" />
-                <ResourceDictionary x:Name="StylesHider" Source="StylesHider.xaml" />
+                <ResourceDictionary x:Name="StylesWindow" Source="Styles\Styles.xaml" />
+                <ResourceDictionary x:Name="StylesHider" Source="Styles\StylesHider.xaml" />
                 
             </ResourceDictionary.MergedDictionaries>
-            
         </ResourceDictionary>
+        
+        
+        
     </Application.Resources>
 </Application>

@@ -4,15 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SignalProcessor
+namespace SignalProcessor.ModelLogic
 {
-    public interface IView
+    class Model
     {
-
-
-
-       
-
-
     }
 }

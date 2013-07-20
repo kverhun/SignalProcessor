@@ -1,0 +1,36 @@
+﻿<Window x:Class="SignalProcessor.ViewLogic.ExportWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="ExportWindow" Height="300" Width="300"
+        Style="{StaticResource WindowBasicStyle}"
+        ResizeMode="NoResize">
+    <DockPanel>
+        
+        <Grid
+            Height="231"
+            DockPanel.Dock="Top">
+            
+            
+        </Grid>
+        
+        <DockPanel
+            Height="40"
+            DockPanel.Dock="Bottom"
+                   >
+            <Button x:Name="btnOK" IsDefault="True"
+                    DockPanel.Dock="Left"
+                    Margin="50,10,50,10"
+                    Width="60"
+                    Click="btnOK_Click">
+                OK
+            </Button>
+            <Button x:Name="btnCancel" IsCancel="True"
+                    DockPanel.Dock="Right"
+                    Margin="0,10,50,10"
+                    Width="60">
+                Cancel
+            </Button>
+        </DockPanel>
+        
+    </DockPanel>
+</Window>

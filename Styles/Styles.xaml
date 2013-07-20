@@ -4,7 +4,7 @@
                x:Name="WindowBasicStyle"
                TargetType="Window">        
         <Setter Property="Background" Value="DarkGray"/>
-        
+            
     </Style>
     
     <Style x:Key="WindowModernStyle"
@@ -12,5 +12,6 @@
            TargetType="Window">
         <Setter Property="BorderThickness" Value="0"/>
     </Style>
+    
     
 </ResourceDictionary>

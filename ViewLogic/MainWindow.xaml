@@ -1,17 +1,34 @@
-﻿<Window x:Class="SignalProcessor.MainWindow"
+﻿<Window x:Class="SignalProcessor.ViewLogic.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:l="clr-namespace:SignalProcessor.ViewLogic"
         x:Name="mainWindow"
+        
         Title="MainWindow" Height="480" Width="640"
         Style="{StaticResource WindowBasicStyle}"
+        
         >
+    <Window.Resources>
+        <l:WidthConverter x:Key="widthConverter" />
+    </Window.Resources>
     <DockPanel>
         <Menu
             DockPanel.Dock="Top" HorizontalAlignment="Left"
             Background="DarkGray"
             BorderBrush="LightGray">
             <MenuItem Header="File">
+                <MenuItem Header="Open" Click="MenuItemOpen_Click"/>
+                    
+                <MenuItem Header="Save" Click="MenuItemSave_Click"/>
                 
+                <Separator />
+                
+                <MenuItem Header="Import..." Click="MenuItemImport_Click"/>
+                <MenuItem Header="Export..." Click="MenuItemExport_Click"/>
+                
+                <Separator />
+                
+                <MenuItem Header="Exit" Click="MenuItemExit_Click"/>
             </MenuItem>
             
             <MenuItem Header="View">
@@ -31,31 +48,33 @@
             <DockPanel x:Name="ControlPanel"
                        
                   >
-                <Grid x:Name="ControlGrid"
+                <DockPanel x:Name="ControlGrid"
                       DockPanel.Dock="Left"
-                      Width="170"
+                      
+                      Width="{Binding ElementName=mainWindow, Path=ActualWidth,
+                                Converter={StaticResource widthConverter}}"          
+                      MaxWidth="370"
                       Background="LightGray"
                       
                       Visibility="{Binding ElementName=expander, Path=IsExpanded,
                                 Converter={StaticResource boolToVisConv}}"
                       
-                      
-                      >
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition Width="30"/>
-                    </Grid.ColumnDefinitions>
-                    
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="30"/>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
+                      IsManipulationEnabled="True"                     
+                 >
+                
 
-                </Grid>
+                </DockPanel>
 
 
             </DockPanel>
 
+            
+            <DockPanel x:Name="ImportPanel"
+                       DockPanel.Dock="Left"
+                       >
+                
+            </DockPanel>
+            
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="30"/>
