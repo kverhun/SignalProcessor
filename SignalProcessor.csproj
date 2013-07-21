@@ -63,6 +63,7 @@
     <Compile Include="ViewLogic\ImportWindow.xaml.cs">
       <DependentUpon>ImportWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewLogic\VisibilityToColorConverter.cs" />
     <Compile Include="ViewLogic\WidthConverter.cs" />
     <Compile Include="ViewModel.cs" />
     <Page Include="ViewLogic\ExportWindow.xaml">

@@ -15,23 +15,16 @@ using System.Windows.Shapes;
 
 namespace SignalProcessor.ViewLogic
 {
-    class WidthConverter : IValueConverter
+    class VisibilityToColorConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            double wdh = (double)value;
-            return (double)(wdh / 3);
+            throw new NotImplementedException();
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            
-            
-            return 3*(double)value;
+            throw new NotImplementedException();
         }
     }
-
-
-
-
 }

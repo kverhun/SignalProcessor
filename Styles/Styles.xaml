@@ -7,11 +7,60 @@
             
     </Style>
     
+    <Style x:Key="ButtonBasicStyle" TargetType="Button">
+        <Setter Property="Background" Value="Red" />
+    </Style>
+    
+    
     <Style x:Key="WindowModernStyle"
            x:Name="WindowsModernStyle"
            TargetType="Window">
         <Setter Property="BorderThickness" Value="0"/>
     </Style>
+    
+    <Style x:Key="ButtonModernStyle"
+           x:Name="ButtonModernStyle"
+           TargetType="Button">
+        <Setter Property="BorderBrush" Value="SteelBlue" />
+        
+        <Setter Property="BorderThickness" Value="0" />
+
+        <Setter Property="Margin" Value="1"/>
+        <Setter Property="Background" Value="LightGray" />
+        <Setter Property="Foreground" Value="Black" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Grid>
+                        <Border x:Name="shape" Background="{TemplateBinding Property=Background}"
+                                BorderBrush="{TemplateBinding Property=BorderBrush}"   
+                                BorderThickness="{TemplateBinding Property=BorderThickness}"
+                                >
+                            
+                        </Border>
+                        <ContentPresenter
+                            
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Center"
+                            />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="BorderThickness" Value="50" />
+                <Setter Property="Foreground" Value="Black" />
+                <Setter Property="TextBlock.Foreground" Value="Black" />
+                <Setter Property="TextElement.Foreground" Value="Black" />
+            </Trigger>
+        </Style.Triggers>
+
+
+    </Style>
+    
+    
     
     
 </ResourceDictionary>

@@ -11,69 +11,143 @@
     <Window.Resources>
         <l:WidthConverter x:Key="widthConverter" />
     </Window.Resources>
-    <DockPanel>
-        <Menu
-            DockPanel.Dock="Top" HorizontalAlignment="Left"
-            Background="DarkGray"
-            BorderBrush="LightGray">
-            <MenuItem Header="File">
-                <MenuItem Header="Open" Click="MenuItemOpen_Click"/>
-                    
-                <MenuItem Header="Save" Click="MenuItemSave_Click"/>
-                
-                <Separator />
-                
-                <MenuItem Header="Import..." Click="MenuItemImport_Click"/>
-                <MenuItem Header="Export..." Click="MenuItemExport_Click"/>
-                
-                <Separator />
-                
-                <MenuItem Header="Exit" Click="MenuItemExit_Click"/>
-            </MenuItem>
+    
+    <DockPanel>        
+        <StackPanel x:Name="SidebarPanel" Height="30"
+                    Background="DarkGray"
+                    DockPanel.Dock="Top"
+                    Orientation="Horizontal">
             
-            <MenuItem Header="View">
-                
-            </MenuItem>
-            
-            <MenuItem Header="Info">
-                
-            </MenuItem>
-            
-        </Menu>
+            <Button x:Name="btnFile"
+                    Width="60"
+                    Click="btnFile_Click"
+                    Style="{StaticResource ButtonModernStyle}">
+                File
+            </Button>
+            <Button x:Name="btnOpen"
+                    Width="60"
+                    Click="btnOpen_Click"
+                    Style="{StaticResource ButtonModernStyle}">
+                Open
+            </Button>
+            <Button x:Name="btnImport"
+                    Click="btnImport_Click"
+                    Width="60"
+                    Style="{StaticResource ButtonModernStyle}"
+                    >
+                Import
+            </Button>
+            <Button x:Name="btnExport"
+                    Click="btnExport_Click"
+                    Width="60"
+                    Style="{StaticResource ButtonModernStyle}">
+                Export
+            </Button>
+            <Button x:Name="btnOpened"
+                    Click="btnOpened_Click"
+                    Width="60"
+                    Style="{StaticResource ButtonModernStyle}">
+                Opened
+            </Button>
+
+        </StackPanel>
         
         
         <DockPanel x:Name="dockPanel" >
         
             
-            <DockPanel x:Name="ControlPanel"
-                       
-                  >
+            <DockPanel x:Name="ControlPanel">
+                
                 <DockPanel x:Name="ControlGrid"
-                      DockPanel.Dock="Left"
                       
                       Width="{Binding ElementName=mainWindow, Path=ActualWidth,
                                 Converter={StaticResource widthConverter}}"          
                       MaxWidth="370"
                       Background="LightGray"
-                      
-                      Visibility="{Binding ElementName=expander, Path=IsExpanded,
-                                Converter={StaticResource boolToVisConv}}"
-                      
+                      Visibility="{Binding ElementName=expanderControl, Path=IsExpanded,
+                                Converter={StaticResource boolToVisConv}}"                      
                       IsManipulationEnabled="True"                     
                  >
                 
 
                 </DockPanel>
 
+                <DockPanel x:Name="FilePanel"
+                      DockPanel.Dock="Left"
+                      Width="{Binding ElementName=mainWindow, Path=ActualWidth,
+                                Converter={StaticResource widthConverter}}"          
+                      MaxWidth="370"
+                      Background="LightGray"
+                      Visibility="Collapsed"
+                      IsManipulationEnabled="True"      
+                >
+                    <Button>
+                        File panel
+                    </Button>
+                </DockPanel>
+
+                <DockPanel x:Name="OpenPanel"
+                      DockPanel.Dock="Left"
+                      Width="{Binding ElementName=mainWindow, Path=ActualWidth,
+                                Converter={StaticResource widthConverter}}"          
+                      MaxWidth="370"
+                      Background="LightGray"
+                      Visibility="Collapsed"
+                      IsManipulationEnabled="True"                     
+                >
+                    <Button>
+                        Open panel
+                    </Button>
+                </DockPanel>
+                                                
+                <DockPanel x:Name="ImportPanel"
+                      DockPanel.Dock="Left"
+                      Width="{Binding ElementName=mainWindow, Path=ActualWidth,
+                                Converter={StaticResource widthConverter}}"          
+                      MaxWidth="370"
+                      Background="LightGray"
+                        Visibility="Collapsed"
+                      IsManipulationEnabled="True"                     
+                >
+                    <Button>
+                        Import panel
+                    </Button>
+                </DockPanel>
+
+                <DockPanel x:Name="ExportPanel"
+                      DockPanel.Dock="Left"
+                      Width="{Binding ElementName=mainWindow, Path=ActualWidth,
+                                Converter={StaticResource widthConverter}}"          
+                      MaxWidth="370"
+                      Background="LightGray"
+                        Visibility="Collapsed"
+                      IsManipulationEnabled="True"                     
+                >
+                    <Button>
+                        Export panel
+                    </Button>
+                </DockPanel>
+
+                <DockPanel x:Name="OpenedPanel"
+                      DockPanel.Dock="Left"
+                      Width="{Binding ElementName=mainWindow, Path=ActualWidth,
+                                Converter={StaticResource widthConverter}}"          
+                      MaxWidth="370"
+                      Background="LightGray"
+                        Visibility="Collapsed"
+                      IsManipulationEnabled="True"                     
+                >
+                    <Button>
+                        Opened panel
+                    </Button>
+                </DockPanel>
+
+
+
+
 
             </DockPanel>
-
             
-            <DockPanel x:Name="ImportPanel"
-                       DockPanel.Dock="Left"
-                       >
-                
-            </DockPanel>
             
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -86,7 +160,7 @@
                     <RowDefinition/>
                 </Grid.RowDefinitions>
 
-                <Expander x:Name="expander"                              
+                <Expander x:Name="expanderControl"                              
                           Grid.Column="0"
                           Grid.Row="0"
                           ExpandDirection="Right"
