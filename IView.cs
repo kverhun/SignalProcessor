@@ -11,8 +11,8 @@ namespace SignalProcessor
 
 
 
-       
-
+        string GetImportTxtFilename();
+        event EventHandler<EventArgs> ImportTxtFileQuery;
 
     }
 }

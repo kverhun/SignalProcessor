@@ -10,6 +10,14 @@ namespace SignalProcessor.ModelLogic.Import
 {
     interface IImporter
     {
-        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="file"></param>
+        /// <returns>
+        /// Signal object improted from file
+        /// null if file is not valid
+        /// </returns>
+        Signal Import(FileInfo file);
     }
 }

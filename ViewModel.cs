@@ -25,7 +25,28 @@ namespace SignalProcessor
             model = new Model();
         }
 
-        
+        private void CreateBindings()
+        {
+
+            
+        }
+
+
+
+        public string ImportTxtFilename
+        {
+            get
+            {
+                return importTxtFilename;
+            }
+            set
+            {
+                MessageBox.Show(value);
+                importTxtFilename = value;
+            }
+        }
+        private string importTxtFilename;
+
 
         private IView view;
         private Model model;

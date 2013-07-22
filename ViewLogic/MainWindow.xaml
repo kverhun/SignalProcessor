@@ -151,7 +151,16 @@
                                         </Button>
                                     
                                 </StackPanel>
-
+                                <StackPanel Orientation="Horizontal" Height="40" DockPanel.Dock="Bottom">
+                                    <Button x:Name="btnImportTxt"
+                                            Height="20"
+                                            Style="{StaticResource PanelButtonStyle}"
+                                            IsEnabled="False"
+                                            Click="btnImportTxt_Click">
+                                        Import
+                                    </Button>
+                                    <Label x:Name="lblImportTxtState" />
+                                </StackPanel>
                             </DockPanel>
                             
                         </DockPanel>

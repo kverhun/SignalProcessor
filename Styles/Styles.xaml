@@ -55,6 +55,11 @@
                 <Setter Property="TextBlock.Foreground" Value="Black" />
                 <Setter Property="TextElement.Foreground" Value="Black" />
             </Trigger>
+            
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Foreground" Value="Gray" />
+            </Trigger>
+            
         </Style.Triggers>
 
 

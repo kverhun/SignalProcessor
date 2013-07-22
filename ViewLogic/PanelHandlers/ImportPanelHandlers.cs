@@ -30,9 +30,21 @@ namespace SignalProcessor.ViewLogic
             if (dlg.ShowDialog() == true)
             {
                 importTxtFilename.Text = dlg.FileName;
-                                
+                this.btnImportTxt.IsEnabled = true;           
             }
 
+        }
+
+        private void btnImportTxt_Click(object sender, RoutedEventArgs e)
+        {
+            ImportTxtFileQuery(sender, e);
+        }
+
+
+
+        public string GetImportTxtFilename()
+        {
+            return this.importTxtFilename.Text;
         }
     }
 }

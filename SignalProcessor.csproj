@@ -56,9 +56,12 @@
     <Compile Include="IView.cs" />
     <Compile Include="ModelLogic\Environment.cs" />
     <Compile Include="ModelLogic\Import\IImporter.cs" />
+    <Compile Include="ModelLogic\Import\ImporterTxt.cs" />
     <Compile Include="ModelLogic\Model.cs" />
     <Compile Include="ModelLogic\Signal.cs" />
     <Compile Include="PresenterLogic\Presenter.cs" />
+    <Compile Include="PresenterLogic\ViewQueryHandlers.cs" />
+    <Compile Include="ViewLogic\EventHandlers.cs" />
     <Compile Include="ViewLogic\PanelHandlers\FilePanelHandlers.cs" />
     <Compile Include="ViewLogic\MenuHandlers.cs" />
     <Compile Include="ViewLogic\ExportWindow.xaml.cs">

@@ -12,26 +12,16 @@ namespace SignalProcessor.PresenterLogic
     /// <summary>
     /// Presenter class: provides connection
     /// 
-    /// constructor and fields here
+    /// view queries here
     /// </summary>
     partial class Presenter
     {
-        public Presenter(IView view)
+        private void ImportTxtFile(object sender, EventArgs e)
         {
-            this.view = view;
-            SetEventHandlers();
-            this.model = new Model();
+            // here we have to say to model what to do
 
-
+            string txtFileName = view.GetImportTxtFilename();
+            model.ImportFile(txtFileName);
         }
-
-        private void SetEventHandlers()
-        {
-            this.view.ImportTxtFileQuery += ImportTxtFile;
-        }
-        
-        
-        private IView view;
-        private Model model;
     }
 }
