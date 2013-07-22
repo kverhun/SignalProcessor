@@ -2,9 +2,12 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:l="clr-namespace:SignalProcessor.ViewLogic"
+        xmlns:wf="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
+        xmlns:wfi="clr-namespace:System.Windows.Forms.Integration;assembly=WindowsFormsIntegration"
+        xmlns:dvc="clr-namespace:System.Windows.Forms.DataVisualization.Charting;assembly=System.Windows.Forms.DataVisualization"
         x:Name="mainWindow"
         
-        Title="MainWindow" Height="480" Width="800"
+        Title="Signal processor" Height="480" Width="800"
         Style="{StaticResource WindowBasicStyle}"
         
         >
@@ -206,7 +209,9 @@
             </DockPanel>
             
             <!--TODO here: choose aproproate container-->
-            <Grid x:Name="LayoutGrid">
+            <Grid x:Name="LayoutGrid"
+                  Margin="1"
+                  Background="Gainsboro">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
@@ -217,8 +222,23 @@
                 </Grid.RowDefinitions>
                 
                 <Label x:Name="lblCurrentlyChosen" FontSize="15"
+                       Grid.Column="0"
+                       Grid.Row="0"
                        />
-                
+                <StackPanel x:Name="panelChart"
+                    Grid.Column="0"
+                    Grid.Row="1"
+                    Margin="5"
+                    ScrollViewer.CanContentScroll="True"
+                            ScrollViewer.HorizontalScrollBarVisibility="Visible"
+                            ScrollViewer.PanningMode="HorizontalOnly"
+                            ScrollViewer.PanningRatio="20"
+                            ScrollViewer.PanningDeceleration="20">
+                    
+                    <WindowsFormsHost>
+                        <dvc:Chart x:Name="chartTest"/>
+                    </WindowsFormsHost>
+                </StackPanel>
                 
             </Grid>
             

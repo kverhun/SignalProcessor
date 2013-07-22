@@ -13,8 +13,22 @@ namespace SignalProcessor.PresenterLogic
         public SignalPresenter(Signal signal)
         {
             this.Name = signal.Name;
+            this.X = signal.X;
+            this.T = signal.T;
         }
 
+
+        public double[] X
+        {
+            get;
+            private set;
+        }
+
+        public double[] T
+        {
+            get;
+            private set;
+        }
 
         public string Name
         {

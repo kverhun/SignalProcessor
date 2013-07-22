@@ -73,6 +73,21 @@ namespace SignalProcessor.ModelLogic
             set;
         }
 
+        public double[] T
+        {
+            get
+            {
+                return t;
+            }
+        }
+
+        public double[] X
+        {
+            get
+            {
+                return x;
+            }
+        }
 
 
         // array of time points
