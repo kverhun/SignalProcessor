@@ -55,17 +55,26 @@
     </ApplicationDefinition>
     <Compile Include="IView.cs" />
     <Compile Include="ModelLogic\Environment.cs" />
+    <Compile Include="ModelLogic\Import\IImporter.cs" />
     <Compile Include="ModelLogic\Model.cs" />
     <Compile Include="ModelLogic\Signal.cs" />
+    <Compile Include="PresenterLogic\Presenter.cs" />
+    <Compile Include="ViewLogic\PanelHandlers\FilePanelHandlers.cs" />
+    <Compile Include="ViewLogic\MenuHandlers.cs" />
     <Compile Include="ViewLogic\ExportWindow.xaml.cs">
       <DependentUpon>ExportWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewLogic\PanelHandlers\ImportPanelHandlers.cs" />
     <Compile Include="ViewLogic\ImportWindow.xaml.cs">
       <DependentUpon>ImportWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewLogic\VisibilityToColorConverter.cs" />
     <Compile Include="ViewLogic\WidthConverter.cs" />
     <Compile Include="ViewModel.cs" />
+    <Page Include="Styles\PanelStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ViewLogic\ExportWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

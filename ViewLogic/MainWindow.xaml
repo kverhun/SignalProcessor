@@ -4,7 +4,7 @@
         xmlns:l="clr-namespace:SignalProcessor.ViewLogic"
         x:Name="mainWindow"
         
-        Title="MainWindow" Height="480" Width="640"
+        Title="MainWindow" Height="480" Width="800"
         Style="{StaticResource WindowBasicStyle}"
         
         >
@@ -58,70 +58,112 @@
             
             <DockPanel x:Name="ControlPanel">
                 
-                <DockPanel x:Name="ControlGrid"
-                      
-                      Width="{Binding ElementName=mainWindow, Path=ActualWidth,
+                <DockPanel  x:Name="ControlGrid"
+                            Width="{Binding ElementName=mainWindow, Path=ActualWidth,
                                 Converter={StaticResource widthConverter}}"          
-                      MaxWidth="370"
-                      Background="LightGray"
-                      Visibility="{Binding ElementName=expanderControl, Path=IsExpanded,
-                                Converter={StaticResource boolToVisConv}}"                      
-                      IsManipulationEnabled="True"                     
-                 >
+                            Style="{StaticResource PopupPanelStyle}"                    
+                            Visibility="{Binding ElementName=expanderControl, Path=IsExpanded,
+                                            Converter={StaticResource boolToVisConv}}"
+                            >
                 
-
                 </DockPanel>
 
-                <DockPanel x:Name="FilePanel"
-                      DockPanel.Dock="Left"
-                      Width="{Binding ElementName=mainWindow, Path=ActualWidth,
+                <DockPanel  x:Name="FilePanel"
+                            Width="{Binding ElementName=mainWindow, Path=ActualWidth,
                                 Converter={StaticResource widthConverter}}"          
-                      MaxWidth="370"
-                      Background="LightGray"
-                      Visibility="Collapsed"
-                      IsManipulationEnabled="True"      
+                            Style="{StaticResource PopupPanelStyle}"    
                 >
-                    <Button>
-                        File panel
-                    </Button>
+                    <StackPanel Orientation="Vertical">
+                        <DockPanel Height="50">
+                            <Button x:Name="btnSave"
+                                    Style="{StaticResource PanelButtonStyle}"
+                                    >
+                                Save
+                            </Button>
+                        </DockPanel>
+
+                        <DockPanel Height="50">    
+                            <Button x:Name="btnExit"
+                                    Style="{StaticResource PanelButtonStyle}"
+                                    Click="btnExit_Click"
+                                    >
+                                Exit
+                            </Button>
+                        </DockPanel>
+                    </StackPanel>
                 </DockPanel>
 
-                <DockPanel x:Name="OpenPanel"
-                      DockPanel.Dock="Left"
-                      Width="{Binding ElementName=mainWindow, Path=ActualWidth,
+                <DockPanel  x:Name="OpenPanel"
+                            Width="{Binding ElementName=mainWindow, Path=ActualWidth,
                                 Converter={StaticResource widthConverter}}"          
-                      MaxWidth="370"
-                      Background="LightGray"
-                      Visibility="Collapsed"
-                      IsManipulationEnabled="True"                     
+                            Style="{StaticResource PopupPanelStyle}"         
                 >
                     <Button>
                         Open panel
                     </Button>
                 </DockPanel>
                                                 
-                <DockPanel x:Name="ImportPanel"
-                      DockPanel.Dock="Left"
-                      Width="{Binding ElementName=mainWindow, Path=ActualWidth,
+                <DockPanel  x:Name="ImportPanel"
+                            Width="{Binding ElementName=mainWindow, Path=ActualWidth,
                                 Converter={StaticResource widthConverter}}"          
-                      MaxWidth="370"
-                      Background="LightGray"
-                        Visibility="Collapsed"
-                      IsManipulationEnabled="True"                     
+                            Style="{StaticResource PopupPanelStyle}"
+                            
                 >
-                    <Button>
-                        Import panel
-                    </Button>
+                    <StackPanel Orientation="Vertical">
+                        
+                        <DockPanel x:Name="txtImportPanel"
+                                   Margin="2"
+                                   Background="Gainsboro">
+                            <StackPanel Orientation="Horizontal"
+                                DockPanel.Dock="Top"
+                                >
+                            
+                                <Label>
+                                    txt files
+                                </Label>
+                                <Expander
+                                x:Name="txtImportPanelExpander"
+                                ExpandDirection="Down" IsExpanded="True"/>                            
+                            </StackPanel>
+                            <DockPanel
+                                Background="Gainsboro"
+                                Visibility="{Binding ElementName=txtImportPanelExpander,Path=IsExpanded,Converter={StaticResource boolToVisConv}}">
+
+                                <StackPanel Orientation="Horizontal" Height="30" DockPanel.Dock="Top" 
+                                            >
+
+                                            <TextBox x:Name="importTxtFilename"
+                                                 DockPanel.Dock="Left"
+                                                     Height="20"
+                                                 Background="LightGray"
+                                                 IsReadOnly="True"
+                                                 MaxWidth="300"
+                                                 Text="Choose file ... "/>
+                                        <Button 
+                                            x:Name="btnImportTxtChooseFile"
+                                            DockPanel.Dock="Left"
+                                            Height="15" Width="20"
+                                                Margin="5"
+                                                Style="{StaticResource PanelButtonStyle}"
+                                            Click="btnImportTxtChooseFile_Click"
+                                            AllowDrop="False">
+                                            ...
+                                        </Button>
+                                    
+                                </StackPanel>
+
+                            </DockPanel>
+                            
+                        </DockPanel>
+                        
+                        
+                    </StackPanel>
                 </DockPanel>
 
-                <DockPanel x:Name="ExportPanel"
-                      DockPanel.Dock="Left"
-                      Width="{Binding ElementName=mainWindow, Path=ActualWidth,
+                <DockPanel  x:Name="ExportPanel"
+                            Width="{Binding ElementName=mainWindow, Path=ActualWidth,
                                 Converter={StaticResource widthConverter}}"          
-                      MaxWidth="370"
-                      Background="LightGray"
-                        Visibility="Collapsed"
-                      IsManipulationEnabled="True"                     
+                            Style="{StaticResource PopupPanelStyle}"
                 >
                     <Button>
                         Export panel
@@ -129,27 +171,34 @@
                 </DockPanel>
 
                 <DockPanel x:Name="OpenedPanel"
-                      DockPanel.Dock="Left"
-                      Width="{Binding ElementName=mainWindow, Path=ActualWidth,
+                    Width="{Binding ElementName=mainWindow, Path=ActualWidth,
                                 Converter={StaticResource widthConverter}}"          
-                      MaxWidth="370"
-                      Background="LightGray"
-                        Visibility="Collapsed"
-                      IsManipulationEnabled="True"                     
+                    Style="{StaticResource PopupPanelStyle}"
                 >
                     <Button>
                         Opened panel
                     </Button>
                 </DockPanel>
 
-
+                <Expander x:Name="expanderControl"                              
+                          Grid.Column="0"
+                          Grid.Row="0"
+                          ExpandDirection="Right"
+                          Width="25"
+                          Height="{Binding ElementName=ControlPanel, Path=Height}"
+                          
+                          DockPanel.Dock="Left"
+                          VerticalAlignment="Top"
+                          VerticalContentAlignment="Center"
+                          >
+                </Expander>
 
 
 
             </DockPanel>
             
-            
-            <Grid>
+            <!--TODO here: choose aproproate container-->
+            <Grid x:Name="LayoutGrid">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="30"/>
                     <ColumnDefinition/>
@@ -159,19 +208,6 @@
                     <RowDefinition Height="30"/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-
-                <Expander x:Name="expanderControl"                              
-                          Grid.Column="0"
-                          Grid.Row="0"
-                          ExpandDirection="Right"
-                          Width="25"
-                          Height="{Binding ElementName=dockPanel, Path=Height}"
-                          
-                          DockPanel.Dock="Left"
-                          VerticalAlignment="Top"
-                          VerticalContentAlignment="Center"
-                          >
-                </Expander>
 
             </Grid>
             
