@@ -66,13 +66,15 @@
     </Style>
     
     
-    <Style x:Key="PanelButtonStyle" BasedOn="{StaticResource ButtonModernStyle}" TargetType="Button">
+    <Style x:Key="PanelButtonStyle" x:Name="PanelButtonStyle" BasedOn="{StaticResource ButtonModernStyle}" TargetType="Button">
         <Setter Property="Margin" Value="10" />
         <Setter Property="Width" Value="70" />
         <Setter Property="MaxWidth" Value="90" />
         <Setter Property="Height" Value="30" />
     </Style>
     
-    
+    <Style x:Key="RemoveButtonStyle" x:Name="RemoveButtonStyle" BasedOn="{StaticResource PanelButtonStyle}" TargetType="Button" >
+        <Setter Property="BorderBrush" Value="Red" />
+    </Style>
     
 </ResourceDictionary>

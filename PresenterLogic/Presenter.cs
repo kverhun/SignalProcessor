@@ -28,9 +28,13 @@ namespace SignalProcessor.PresenterLogic
         private void SetEventHandlers()
         {
             this.view.ImportTxtFileQuery += ImportTxtFile;
+            this.view.OpenedRemoveQuery += OpenedRemove;
+            this.view.OpenedChooseQuery += OpenedChoose;
         }
         
         
+        
+
         private IView view;
         private Model model;
     }

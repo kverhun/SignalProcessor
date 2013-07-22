@@ -22,6 +22,36 @@ namespace SignalProcessor.PresenterLogic
 
             string txtFileName = view.GetImportTxtFilename();
             model.ImportFile(txtFileName);
+            OpenedListUpdate();
         }
+
+        private void OpenedRemove(object sender, EventArgs e)
+        {
+            string name = sender as string;
+            if (name == null)
+                return;
+            model.RemoveItem(name);
+            OpenedListUpdate();
+        }
+
+        private void OpenedChoose(object sender, EventArgs e)
+        {
+            string name = sender as string;
+            if (name == null)
+                return;
+
+            // TODO here: tell model to change currenly chosen signal
+            Signal current = model.ChooseItem(name);
+            SignalPresenter presenter = new SignalPresenter(current);
+            view.SignalLayout(presenter);
+        }
+
+
+        private void OpenedListUpdate()
+        {
+            List<string> items = model.GetItems();
+            view.OpenedSetItems(items);
+        }
+
     }
 }

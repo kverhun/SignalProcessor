@@ -183,10 +183,9 @@
                     Width="{Binding ElementName=mainWindow, Path=ActualWidth,
                                 Converter={StaticResource widthConverter}}"          
                     Style="{StaticResource PopupPanelStyle}"
+                           MaxWidth="200"
                 >
-                    <Button>
-                        Opened panel
-                    </Button>
+                    
                 </DockPanel>
 
                 <Expander x:Name="expanderControl"                              
@@ -209,7 +208,6 @@
             <!--TODO here: choose aproproate container-->
             <Grid x:Name="LayoutGrid">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="30"/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 
@@ -217,7 +215,11 @@
                     <RowDefinition Height="30"/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-
+                
+                <Label x:Name="lblCurrentlyChosen" FontSize="15"
+                       />
+                
+                
             </Grid>
             
         </DockPanel>

@@ -27,11 +27,19 @@ namespace SignalProcessor.ModelLogic
 
         public void ImportSignal(FileInfo file)
         {
-            string name = file.Name;
+            string name = file.Name.Remove(file.Name.Length - 4);
             Signal signal = ImportProcess(file);
             if (signal != null)
             {
-                signals.Add(name, signal);
+                try
+                {
+                    signal.Name = name;
+                    signals.Add(name, signal);
+                }
+                catch
+                {
+
+                }
             }
         }
 
@@ -39,7 +47,10 @@ namespace SignalProcessor.ModelLogic
         {
             Signal signal = ImportProcess(file);
             if (signal != null)
+            {
+                signal.Name = name;
                 signals.Add(name, signal);
+            }
         }
 
         public void RemoveSignal(string name)
@@ -47,6 +58,11 @@ namespace SignalProcessor.ModelLogic
             signals.Remove(name);
         }
 
+        public void ChooseSignal(string name)
+        {
+            currentlyChosenName = name;
+            currentlyChosen = signals[name];
+        }
 
 
         private Signal ImportProcess(FileInfo file)
@@ -68,10 +84,20 @@ namespace SignalProcessor.ModelLogic
             }
             return new Signal();
         }
-        
+
+        public Signal CurrentlyChosen
+        {
+            get
+            {
+                return currentlyChosen;
+            }
+        }
+
+        private Signal currentlyChosen;
+        private string currentlyChosenName;
 
         private Dictionary<string, Signal> signals;
-        IImporter txtImporter;
+        private IImporter txtImporter;
 
 
     }

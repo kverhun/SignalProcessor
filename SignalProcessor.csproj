@@ -60,6 +60,7 @@
     <Compile Include="ModelLogic\Model.cs" />
     <Compile Include="ModelLogic\Signal.cs" />
     <Compile Include="PresenterLogic\Presenter.cs" />
+    <Compile Include="PresenterLogic\SignalPresenter.cs" />
     <Compile Include="PresenterLogic\ViewQueryHandlers.cs" />
     <Compile Include="ViewLogic\EventHandlers.cs" />
     <Compile Include="ViewLogic\PanelHandlers\FilePanelHandlers.cs" />
@@ -71,6 +72,8 @@
     <Compile Include="ViewLogic\ImportWindow.xaml.cs">
       <DependentUpon>ImportWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewLogic\PanelHandlers\OpenedPanelHandlers.cs" />
+    <Compile Include="ViewLogic\SignalRepresentation\SignalRepresentation.cs" />
     <Compile Include="ViewLogic\VisibilityToColorConverter.cs" />
     <Compile Include="ViewLogic\WidthConverter.cs" />
     <Compile Include="ViewModel.cs" />
