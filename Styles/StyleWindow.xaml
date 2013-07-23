@@ -5,11 +5,8 @@
         <Setter Property="UseLayoutRounding" Value="True" />
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="AllowsTransparency" Value="True" />
-        <!--<Setter Property="WindowChrome.WindowChrome">            
-            <Setter.Value>
-                <WindowChrome CornerRadius="0" GlassFrameThickness="0"  UseAeroCaptionButtons="True"  NonClientFrameEdges="None" ResizeBorderThickness="1"/>
-            </Setter.Value>
-        </Setter>-->
-
+        <Setter Property="ResizeMode" Value="CanResizeWithGrip" />
+        <Setter Property="WindowChrome.ResizeBorderThickness" Value="1" />
+        
     </Style>
 </ResourceDictionary>
