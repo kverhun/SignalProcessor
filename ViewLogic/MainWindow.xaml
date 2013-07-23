@@ -8,54 +8,113 @@
         x:Name="mainWindow"
         
         Title="Signal processor" Height="480" Width="800"
-        Style="{StaticResource WindowBasicStyle}"
+        Style="{StaticResource WindowModernStyle}"
+        StateChanged="mainWindow_StateChanged"
         
         >
     <Window.Resources>
         <l:WidthConverter x:Key="widthConverter" />
     </Window.Resources>
     
-    <DockPanel>        
-        <StackPanel x:Name="SidebarPanel" Height="30"
-                    Background="DarkGray"
-                    DockPanel.Dock="Top"
-                    Orientation="Horizontal">
-            
-            <Button x:Name="btnFile"
-                    Width="60"
-                    Click="btnFile_Click"
-                    Style="{StaticResource ButtonModernStyle}">
-                File
-            </Button>
-            <Button x:Name="btnOpen"
-                    Width="60"
-                    Click="btnOpen_Click"
-                    Style="{StaticResource ButtonModernStyle}">
-                Open
-            </Button>
-            <Button x:Name="btnImport"
-                    Click="btnImport_Click"
-                    Width="60"
-                    Style="{StaticResource ButtonModernStyle}"
-                    >
-                Import
-            </Button>
-            <Button x:Name="btnExport"
-                    Click="btnExport_Click"
-                    Width="60"
-                    Style="{StaticResource ButtonModernStyle}">
-                Export
-            </Button>
-            <Button x:Name="btnOpened"
-                    Click="btnOpened_Click"
-                    Width="60"
-                    Style="{StaticResource ButtonModernStyle}">
-                Opened
-            </Button>
+    <DockPanel
+        >        
+        
+        <DockPanel DockPanel.Dock="Top" Height="55" MouseDown="DockPanelMove_MouseDown"
+                   Background="DarkGray">
+            <StackPanel DockPanel.Dock="Left" Height="55">
+                <Label Height="25" Content="Signal Processor" 
+                       FontSize="13.5" FontFamily="Global Sans Serif"/>
+                <StackPanel x:Name="SidebarPanel" Height="30"
+                        Opacity="1"                        
+                        Orientation="Horizontal"
+                        DockPanel.Dock="Bottom">
+                <Button x:Name="btnFile"
+                        Width="60"
+                        Click="btnFile_Click"
+                        Style="{StaticResource ButtonModernStyle}">
+                    File
+                </Button>
+                <Button x:Name="btnOpen"
+                        Width="60"
+                        Click="btnOpen_Click"
+                        Style="{StaticResource ButtonModernStyle}">
+                    Open
+                </Button>
+                <Button x:Name="btnImport"
+                        Click="btnImport_Click"
+                        Width="60"
+                        Style="{StaticResource ButtonModernStyle}"
+                        >
+                    Import
+                </Button>
+                <Button x:Name="btnExport"
+                        Click="btnExport_Click"
+                        Width="60"
+                        Style="{StaticResource ButtonModernStyle}">
+                    Export
+                </Button>
+                <Button x:Name="btnOpened"
+                        Click="btnOpened_Click"
+                        Width="60"
+                        Style="{StaticResource ButtonModernStyle}">
+                    Opened
+                </Button>
+            </StackPanel>
+            </StackPanel>
+            <StackPanel DockPanel.Dock="Top">
+                <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" FlowDirection="RightToLeft">
+                    <Button 
+                        x:Name="btnClose"
+                        Click="btnClose_Click"
+                        DockPanel.Dock="Right"
+                        Background="DarkGray"
+                        Margin="2"
+                        Style="{StaticResource ButtonModernStyle}"
+                        Width="25" Height="25"
+                        FontSize="20" FontFamily="Microsoft Yi Baiti" FontWeight="ExtraBlack">
+                            <Canvas Width="25" Height="25">
+                                <Line X1="5" Y1="5" X2="20" Y2="20"
+                                  Stroke="Black" StrokeThickness="2"/>
+                                <Line X1="5" Y1="20" X2="20" Y2="5"
+                                  Stroke="Black" StrokeThickness="2" />
+                            </Canvas>
+                    </Button>
+                    <Button 
+                        x:Name="btnMaximize"
+                        Click="btnMaximize_Click"
+                        DockPanel.Dock="Right"
+                        Margin="3"
+                        Background="DarkGray"
+                        Style="{StaticResource ButtonModernStyle}"
+                        Width="20" Height="20"
+                        FontSize="20" FontFamily="Microsoft Yi Baiti" FontWeight="ExtraBlack">
 
-        </StackPanel>
-        
-        
+                    </Button>
+
+                    <Button
+                        x:Name="btnMinimize"
+                        Click="btnMinimize_Click"
+                        DockPanel.Dock="Right"
+                        Margin="3"
+                        Background="DarkGray"
+                        Style="{StaticResource ButtonModernStyle}"
+                        Width="20" Height="20"
+                        FontSize="20" FontFamily="Microsoft Yi Baiti" FontWeight="ExtraBlack">
+                        <Canvas Width="20" Height="20">
+                            <Line X1="2.5" Y1="15" X2="17.5" Y2="15"
+                          Stroke="Black" StrokeThickness="2" />
+                        </Canvas>
+                        
+                    </Button>
+
+                </StackPanel>
+            </StackPanel>
+            
+            
+        </DockPanel>
+
+
+
         <DockPanel x:Name="dockPanel" >
         
             
@@ -195,7 +254,8 @@
                           Grid.Column="0"
                           Grid.Row="0"
                           ExpandDirection="Right"
-                          Width="25"
+                          Width="20"
+                          Margin="1"
                           Height="{Binding ElementName=ControlPanel, Path=Height}"
                           
                           DockPanel.Dock="Left"

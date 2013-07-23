@@ -44,6 +44,66 @@ namespace SignalProcessor.ViewLogic
             
         }
 
+        private void StackPanel_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (Mouse.LeftButton == MouseButtonState.Pressed)
+                this.DragMove();
+        }
+
+        private void StackPanel_MouseDown1(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void DockPanelMove_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (Mouse.LeftButton == MouseButtonState.Pressed)
+            {
+                
+                this.MyDragMove();
+            }
+        }
+
+        private void MyDragMove()
+        {
+            this.DragMove();
+            if (this.WindowState == WindowState.Maximized)
+                this.WindowState = WindowState.Normal;
+            
+        }
+
+        private void btnMinimize_Click(object sender, RoutedEventArgs e)
+        {
+            this.WindowState = WindowState.Minimized;
+        }
+
+        private void btnMaximize_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.WindowState == WindowState.Normal)
+                this.WindowState = WindowState.Maximized;
+            else
+                this.WindowState = WindowState.Normal;
+        }
+
+        private void btnClose_Click(object sender, RoutedEventArgs e)
+        {
+            this.btnExit_Click(sender, e);
+        }
+
+        private void mainWindow_StateChanged(object sender, EventArgs e)
+        {
+            if (this.WindowState == WindowState.Maximized)
+            {
+                
+            }
+            else
+            {
+
+            }
+        }
+
+
+
 
 
      

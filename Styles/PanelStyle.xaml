@@ -6,6 +6,6 @@
         <Setter Property="MaxWidth" Value="370" />
         <Setter Property="Background" Value="WhiteSmoke" />
         <Setter Property="Visibility" Value="Collapsed" />
-    
+        <Setter Property="Margin" Value="1" />
     </Style>
 </ResourceDictionary>

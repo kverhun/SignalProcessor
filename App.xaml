@@ -9,6 +9,7 @@
                 <ResourceDictionary x:Name="StylesWindow" Source="Styles\Styles.xaml" />
                 <ResourceDictionary x:Name="StylesHider" Source="Styles\StylesHider.xaml" />
                 <ResourceDictionary x:Name="StylePopupPanel" Source="Styles\PanelStyle.xaml" />
+                <ResourceDictionary x:Name="StyleWindow" Source="Styles\StyleWindow.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
         
