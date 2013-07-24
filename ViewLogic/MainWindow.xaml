@@ -61,8 +61,13 @@
                 </Button>
             </StackPanel>
             </StackPanel>
+<<<<<<< HEAD
             <DockPanel DockPanel.Dock="Bottom" Margin="0,0,3,0">
                 <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" FlowDirection="RightToLeft">
+=======
+            <StackPanel DockPanel.Dock="Top" Margin="0,0,3,0">
+                <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" FlowDirection="RightToLeft">
+>>>>>>> 4d435b746c6e84ac656f1968c371f8959973ee36
                     <Button 
                         x:Name="btnClose"
                         Click="btnClose_Click"

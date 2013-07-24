@@ -4,6 +4,7 @@
         <Setter Property="WindowStyle" Value="None" />
         <Setter Property="UseLayoutRounding" Value="True" />
         <Setter Property="BorderThickness" Value="0" />
+<<<<<<< HEAD
         <!--<Setter Property="AllowsTransparency" Value="True" /> -->
         
         <Setter Property="WindowChrome.WindowChrome">            
@@ -23,5 +24,11 @@
             </Setter.Value>
         </Setter>
 
+=======
+        <Setter Property="AllowsTransparency" Value="True" />
+        <Setter Property="ResizeMode" Value="CanResizeWithGrip" />
+        <Setter Property="WindowChrome.ResizeBorderThickness" Value="1" />
+        
+>>>>>>> 4d435b746c6e84ac656f1968c371f8959973ee36
     </Style>
 </ResourceDictionary>
