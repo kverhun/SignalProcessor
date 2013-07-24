@@ -28,6 +28,11 @@ namespace SignalProcessor.PresenterLogic
             this.signal = signal;           
         }
 
+        public void CountProperties()
+        {
+            this.signal.CountProperities();
+            this.Properities = signal.Properities;
+        }
 
         public StackPanel GetLayoutPanel()
         {
@@ -45,30 +50,6 @@ namespace SignalProcessor.PresenterLogic
         public StackPanel GetLayoutPropertiesPanel()
         {
             StackPanel panel = new StackPanel();
-            panel.Margin = new Thickness(5);
-            panel.Orientation = Orientation.Vertical;
-            Label lbl = new Label();
-            lbl.Content = "Properties of " + this.Name;
-            panel.Children.Add(lbl);
-
-            if (this.Properities == null)
-            {
-                Button btn = new Button();
-                btn.Name = this.Name;
-                btn.Style = App.Current.FindResource("PanelButtonStyle") as Style;
-                btn.Height = 20;
-                btn.Width = 150;
-                btn.Content = "Count";
-                btn.Margin = new Thickness(5);
-                //btn.Click += btnSignal_Click;
-                panel.Children.Add(btn);
-                
-            }
-            else
-            {
-
-            }
-
             return panel;
         }
         

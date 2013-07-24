@@ -294,21 +294,18 @@
                            Grid.Column="0"
                            Grid.Row="0"
                            />
-                    <StackPanel x:Name="panelChart"
-                        Grid.Column="0"
-                        Grid.Row="1"
-                        Margin="5"
-                        ScrollViewer.CanContentScroll="True"
-                                ScrollViewer.HorizontalScrollBarVisibility="Visible"
-                                ScrollViewer.PanningMode="HorizontalOnly"
-                                ScrollViewer.PanningRatio="20"
-                                ScrollViewer.PanningDeceleration="20">
                     
-                        <WindowsFormsHost>
-                            <dvc:Chart x:Name="chartTest" />
-                        </WindowsFormsHost>
-                    </StackPanel>
-                
+                        <StackPanel x:Name="panelChart"
+                                    ScrollViewer.VerticalScrollBarVisibility="Auto"
+                            Grid.Column="0"
+                            Grid.Row="1"
+                            Margin="5"
+                                    >
+                               
+                                <WindowsFormsHost>
+                                    <dvc:Chart x:Name="chartTest" />
+                                </WindowsFormsHost>
+                        </StackPanel>
                 </Grid>
             </DockPanel>
         </DockPanel>

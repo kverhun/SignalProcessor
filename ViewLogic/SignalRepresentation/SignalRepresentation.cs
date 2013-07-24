@@ -60,5 +60,72 @@ namespace SignalProcessor.ViewLogic
             this.ControlGrid.Children.Add(signal.GetLayoutPropertiesPanel());
         
         }
+
+
+
+
+
+        private StackPanel GetPanelLayout(SignalPresenter signal)
+        {
+            StackPanel panel = new StackPanel();
+            panel.Margin = new Thickness(5);
+            panel.Orientation = Orientation.Vertical;
+            Label lbl = new Label();
+            lbl.Content = "Properties of " + this.Name;
+            panel.Children.Add(lbl);
+
+            if (signal.Properities == null)
+            {
+                Button btn = new Button();
+                btn.Name = this.Name;
+                btn.Style = App.Current.FindResource("PanelButtonStyle") as Style;
+                btn.Height = 20;
+                btn.Width = 150;
+                btn.Content = "Count";
+                btn.Margin = new Thickness(5);
+                btn.Click += btnSignal_Click;
+                panel.Children.Add(btn);
+
+            }
+            else
+            {
+
+            }
+            return panel;
+        }
+
+        private StackPanel GetSignalPanel(SignalPanelArgs args)
+        {
+            StackPanel panel = new StackPanel();
+
+            return panel;
+        }
+
+        private StackPanel GetPropertiesPanel(PropertyPanelArgs args)
+        {
+            StackPanel panel = new StackPanel();
+
+            return panel;
+        }
+
+        private void PropertyPanelUpdate(StackPanel panel)
+        {
+            // here we should put in to view
+            ControlGrid.Children.Clear();
+            ControlGrid.Children.Add(panel);
+        }
+
+        private void SignalLayoutUpdate(StackPanel panel)
+        {
+            // here we should to view
+            panelChart.Children.Clear();
+            panelChart.Children.Add(panel);
+        }
+
+        private void btnSignal_Click(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }

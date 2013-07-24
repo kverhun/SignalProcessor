@@ -21,6 +21,7 @@ namespace SignalProcessor.PresenterLogic
             this.view = view;
             SetEventHandlers();
             this.model = new Model();
+            this.holder = new SignalHolder();
         }
 
         private void SetEventHandlers()
@@ -35,5 +36,6 @@ namespace SignalProcessor.PresenterLogic
 
         private IView view;
         private Model model;
+        private SignalHolder holder;
     }
 }
