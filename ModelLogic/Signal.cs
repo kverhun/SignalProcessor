@@ -16,7 +16,7 @@ namespace SignalProcessor.ModelLogic
         // default constructor creates empty signal
         public Signal()
         {
-
+            
         }
 
 
@@ -67,6 +67,35 @@ namespace SignalProcessor.ModelLogic
         }
 
 
+        public void CountProperities()
+        {
+            properities = new SignalProperties();
+            properities.Points = GetPointsCount();
+            properities.Duration = GetDuration();
+            properities.Average = GetAverage();
+            properities.Variance = GetVariance();
+            properities.WaveletLevelsAvailable = GetWaveletLevelsAvailable();
+
+            properitiesReady = true;
+        }
+
+        public SignalProperties Properities
+        {
+            get
+            {
+                if (properitiesReady)
+                    return properities;
+                else
+                    return null;
+            }
+        }
+
+        private bool properitiesReady;
+        private SignalProperties properities;
+
+
+
+
         public string Name
         {
             get;
@@ -95,6 +124,40 @@ namespace SignalProcessor.ModelLogic
 
         // array of values: x[i] = x(t[i])
         private double[] x;
+
+
+
+
+        private int GetPointsCount()
+        {
+            return t.Length;
+        }
+
+        private double GetDuration()
+        {
+            return (t[t.Length - 1] - t[0]);
+        }
+
+        private double GetAverage()
+        {
+            // average here to be counted
+            return 0.0;
+        }
+
+        private double GetVariance()
+        {
+            // variance here to be counted
+            return 1.0;
+        }
+
+        private int GetWaveletLevelsAvailable()
+        {
+            return (int)Math.Floor(Math.Log(t.Length, 2));            
+        }
+
+
+
+
 
     }
 }

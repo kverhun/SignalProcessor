@@ -4,12 +4,24 @@
         <Setter Property="WindowStyle" Value="None" />
         <Setter Property="UseLayoutRounding" Value="True" />
         <Setter Property="BorderThickness" Value="0" />
-        <Setter Property="AllowsTransparency" Value="True" />
-        <!--<Setter Property="WindowChrome.WindowChrome">            
+        <!--<Setter Property="AllowsTransparency" Value="True" /> -->
+        
+        <Setter Property="WindowChrome.WindowChrome">            
             <Setter.Value>
-                <WindowChrome CornerRadius="0" GlassFrameThickness="0"  UseAeroCaptionButtons="True"  NonClientFrameEdges="None" ResizeBorderThickness="1"/>
+                <WindowChrome CornerRadius="0" GlassFrameThickness="0"  UseAeroCaptionButtons="True"  NonClientFrameEdges="None"  ResizeBorderThickness="3"/>
             </Setter.Value>
-        </Setter>-->
+        </Setter>
+        
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Window" >
+                    <Border Background="LightGray" BorderThickness="0">
+                        <ContentPresenter>
+                        </ContentPresenter>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
 
     </Style>
 </ResourceDictionary>

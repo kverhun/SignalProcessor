@@ -62,6 +62,7 @@
     <Compile Include="ModelLogic\Import\ImporterTxt.cs" />
     <Compile Include="ModelLogic\Model.cs" />
     <Compile Include="ModelLogic\Signal.cs" />
+    <Compile Include="ModelLogic\SignalProperties.cs" />
     <Compile Include="PresenterLogic\Presenter.cs" />
     <Compile Include="PresenterLogic\SignalPresenter.cs" />
     <Compile Include="PresenterLogic\ViewQueryHandlers.cs" />

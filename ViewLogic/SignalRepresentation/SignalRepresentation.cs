@@ -40,11 +40,25 @@ namespace SignalProcessor.ViewLogic
             Series series = new Series(signal.Name);
             series.Points.DataBindXY(signal.T, signal.X);
             series.ChartType = SeriesChartType.Line;
-            
+            series.LegendText = signal.Name;
             chartTest.ChartAreas.Add(area);
             chartTest.Series.Add(series);
+            chartTest.Visible = true;
+
+        
         }
 
+        
+
         //public event EventHandler<EventArgs> SignalLayoutQuery;
+
+
+        public void SignalPropertiesLayout(SignalPresenter signal)
+        {
+            // adding properties to control panel
+            this.ControlGrid.Children.Clear();
+            this.ControlGrid.Children.Add(signal.GetLayoutPropertiesPanel());
+        
+        }
     }
 }

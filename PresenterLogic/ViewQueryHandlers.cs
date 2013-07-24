@@ -46,12 +46,18 @@ namespace SignalProcessor.PresenterLogic
             view.SignalLayout(presenter);
         }
 
+        private void PropertiesCount(object sender, EventArgs e)
+        {
+            
+        }
 
         private void OpenedListUpdate()
         {
             List<string> items = model.GetItems();
             view.OpenedSetItems(items);
         }
+
+
 
     }
 }

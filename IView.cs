@@ -25,6 +25,7 @@ namespace SignalProcessor
 
         // Signal representation
         void SignalLayout(SignalPresenter signal);
+        void SignalPropertiesLayout(SignalPresenter signal);
         //event EventHandler<EventArgs> SignalLayoutQuery;
         
     }

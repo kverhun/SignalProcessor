@@ -29,6 +29,7 @@ namespace SignalProcessor.ViewLogic
         /// <param name="items"></param>
         public void OpenedSetItems(List<string> items)
         {
+            
             OpenedPanel.Children.Clear();
             StackPanel panel = new StackPanel();
             DockPanel.SetDock(panel, Dock.Top);
@@ -47,7 +48,7 @@ namespace SignalProcessor.ViewLogic
                 btn.Height = 20;
                 btn.Width = 150;
                 btn.Content = item;
-                btn.Margin = new Thickness(1);
+                btn.Margin = new Thickness(5);
                 btn.Click += btnSignal_Click;
                 localPanel.Children.Add(btn);
 

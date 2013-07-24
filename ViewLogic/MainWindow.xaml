@@ -21,7 +21,7 @@
         
         <DockPanel DockPanel.Dock="Top" Height="55" MouseDown="DockPanelMove_MouseDown"
                    Background="DarkGray">
-            <StackPanel DockPanel.Dock="Left" Height="55">
+            <StackPanel DockPanel.Dock="Left" Height="55" Margin="5,0,0,0">
                 <Label Height="25" Content="Signal Processor" 
                        FontSize="13.5" FontFamily="Global Sans Serif"/>
                 <StackPanel x:Name="SidebarPanel" Height="30"
@@ -61,8 +61,8 @@
                 </Button>
             </StackPanel>
             </StackPanel>
-            <StackPanel DockPanel.Dock="Top">
-                <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" FlowDirection="RightToLeft">
+            <DockPanel DockPanel.Dock="Bottom" Margin="0,0,3,0">
+                <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" FlowDirection="RightToLeft">
                     <Button 
                         x:Name="btnClose"
                         Click="btnClose_Click"
@@ -108,7 +108,7 @@
                     </Button>
 
                 </StackPanel>
-            </StackPanel>
+            </DockPanel>
             
             
         </DockPanel>
@@ -120,15 +120,7 @@
             
             <DockPanel x:Name="ControlPanel">
                 
-                <DockPanel  x:Name="ControlGrid"
-                            Width="{Binding ElementName=mainWindow, Path=ActualWidth,
-                                Converter={StaticResource widthConverter}}"          
-                            Style="{StaticResource PopupPanelStyle}"                    
-                            Visibility="{Binding ElementName=expanderControl, Path=IsExpanded,
-                                            Converter={StaticResource boolToVisConv}}"
-                            >
                 
-                </DockPanel>
 
                 <DockPanel  x:Name="FilePanel"
                             Width="{Binding ElementName=mainWindow, Path=ActualWidth,
@@ -174,7 +166,7 @@
                     <StackPanel Orientation="Vertical">
                         
                         <DockPanel x:Name="txtImportPanel"
-                                   Margin="2"
+                                   Margin="5"
                                    Background="Gainsboro">
                             <StackPanel Orientation="Horizontal"
                                 DockPanel.Dock="Top"
@@ -250,11 +242,30 @@
                     
                 </DockPanel>
 
+                
+
+
+
+            </DockPanel>
+            
+            <!--TODO here: choose aproproate container-->
+            <DockPanel>
+
+                <DockPanel  x:Name="ControlGrid"
+                            Width="{Binding ElementName=mainWindow, Path=ActualWidth,
+                                Converter={StaticResource widthConverter}}"          
+                            Style="{StaticResource PopupPanelStyle}"                    
+                            Visibility="{Binding ElementName=expanderControl, Path=IsExpanded,
+                                            Converter={StaticResource boolToVisConv}}"
+                            >
+                    
+                </DockPanel>
+
                 <Expander x:Name="expanderControl"                              
                           Grid.Column="0"
                           Grid.Row="0"
                           ExpandDirection="Right"
-                          Width="20"
+                          Width="25"
                           Margin="1"
                           Height="{Binding ElementName=ControlPanel, Path=Height}"
                           
@@ -263,45 +274,40 @@
                           VerticalContentAlignment="Center"
                           >
                 </Expander>
-
-
-
-            </DockPanel>
-            
-            <!--TODO here: choose aproproate container-->
-            <Grid x:Name="LayoutGrid"
-                  Margin="1"
-                  Background="Gainsboro">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
                 
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="30"/>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
+                <Grid x:Name="LayoutGrid"
+                      Margin="1"
+                      Background="Gainsboro">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
                 
-                <Label x:Name="lblCurrentlyChosen" FontSize="15"
-                       Grid.Column="0"
-                       Grid.Row="0"
-                       />
-                <StackPanel x:Name="panelChart"
-                    Grid.Column="0"
-                    Grid.Row="1"
-                    Margin="5"
-                    ScrollViewer.CanContentScroll="True"
-                            ScrollViewer.HorizontalScrollBarVisibility="Visible"
-                            ScrollViewer.PanningMode="HorizontalOnly"
-                            ScrollViewer.PanningRatio="20"
-                            ScrollViewer.PanningDeceleration="20">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                
+                    <Label x:Name="lblCurrentlyChosen" FontSize="15"
+                           Grid.Column="0"
+                           Grid.Row="0"
+                           />
+                    <StackPanel x:Name="panelChart"
+                        Grid.Column="0"
+                        Grid.Row="1"
+                        Margin="5"
+                        ScrollViewer.CanContentScroll="True"
+                                ScrollViewer.HorizontalScrollBarVisibility="Visible"
+                                ScrollViewer.PanningMode="HorizontalOnly"
+                                ScrollViewer.PanningRatio="20"
+                                ScrollViewer.PanningDeceleration="20">
                     
-                    <WindowsFormsHost>
-                        <dvc:Chart x:Name="chartTest"/>
-                    </WindowsFormsHost>
-                </StackPanel>
+                        <WindowsFormsHost>
+                            <dvc:Chart x:Name="chartTest" />
+                        </WindowsFormsHost>
+                    </StackPanel>
                 
-            </Grid>
-            
+                </Grid>
+            </DockPanel>
         </DockPanel>
         
         
