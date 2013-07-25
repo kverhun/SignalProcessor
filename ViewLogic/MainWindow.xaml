@@ -121,7 +121,8 @@
         <DockPanel x:Name="dockPanel" >
         
             
-            <DockPanel x:Name="ControlPanel">
+            <DockPanel x:Name="ControlPanel"
+                       MouseDown="DockPanelMove_MouseDown">
                 
                 
 
@@ -252,7 +253,8 @@
             </DockPanel>
             
             <!--TODO here: choose aproproate container-->
-            <DockPanel>
+            <DockPanel
+                MouseDown="DockPanelMove_MouseDown">
 
                 <DockPanel  x:Name="ControlGrid"
                             Width="{Binding ElementName=mainWindow, Path=ActualWidth,
@@ -280,7 +282,9 @@
                 
                 <Grid x:Name="LayoutGrid"
                       Margin="1"
-                      Background="Gainsboro">
+                      Background="Gainsboro"
+                      MouseDown="DockPanelMove_MouseDown"
+                      >
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
@@ -290,7 +294,8 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
                 
-                    <Label x:Name="lblCurrentlyChosen" FontSize="15"
+                    <Label x:Name="lblCurrentlyChosen" FontSize="16"
+                           FontWeight="Bold"
                            Grid.Column="0"
                            Grid.Row="0"
                            />
@@ -301,10 +306,7 @@
                             Grid.Row="1"
                             Margin="5"
                                     >
-                               
-                                <WindowsFormsHost>
-                                    <dvc:Chart x:Name="chartTest" />
-                                </WindowsFormsHost>
+
                         </StackPanel>
                 </Grid>
             </DockPanel>

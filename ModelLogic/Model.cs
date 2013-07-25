@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 using System.IO;
 
+using SignalProcessor.ModelLogic.Import;
 
 namespace SignalProcessor.ModelLogic
 {
@@ -17,32 +18,23 @@ namespace SignalProcessor.ModelLogic
     {
         public Model()
         {
-            environment = new Environment();
+            importerTxt = new ImporterTxt();
         }
 
-        public void ImportFile(string path)
+        public Signal ImportTxt(string fname)
         {
-            FileInfo file = new FileInfo(path);
-            environment.ImportSignal(file);
+            FileInfo fl = new FileInfo(fname);
+            try
+            {
+                return importerTxt.Import(fl);
+            }
+            catch
+            {
+                return null;
+            }
+            
         }
 
-        public List<string> GetItems()
-        {
-            return environment.GetSignalList();
-        }
-
-        public void RemoveItem(string item)
-        {
-            environment.RemoveSignal(item);
-        }
-
-        public Signal ChooseItem(string item)
-        {
-            environment.ChooseSignal(item);
-            return environment.CurrentlyChosen;
-        }
-
-        private Environment environment;
-
+        private IImporter importerTxt;
     }
 }

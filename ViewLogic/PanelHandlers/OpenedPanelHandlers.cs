@@ -31,6 +31,12 @@ namespace SignalProcessor.ViewLogic
         {
             
             OpenedPanel.Children.Clear();
+
+            Label lbl = new Label();
+            lbl.Content = "Opened";
+            lbl.Style = App.Current.FindResource("lblHeaderStyle") as Style;
+            OpenedPanel.Children.Add(lbl);
+
             StackPanel panel = new StackPanel();
             DockPanel.SetDock(panel, Dock.Top);
 

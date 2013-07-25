@@ -59,8 +59,7 @@ namespace SignalProcessor.ViewLogic
         {
             if (Mouse.LeftButton == MouseButtonState.Pressed)
             {
-                
-                this.MyDragMove();
+                this.DragMove();
             }
         }
 

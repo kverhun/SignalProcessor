@@ -21,7 +21,9 @@ namespace SignalProcessor.PresenterLogic
             this.view = view;
             SetEventHandlers();
             this.model = new Model();
-            this.holder = new SignalHolder();
+            signals = new Dictionary<string, Signal>();
+            signalLayoutArgs = new Dictionary<string, SignalPanelArgs>();
+            signalPropertyArgs = new Dictionary<string, PropertyPanelArgs>();
         }
 
         private void SetEventHandlers()
@@ -29,13 +31,17 @@ namespace SignalProcessor.PresenterLogic
             this.view.ImportTxtFileQuery += ImportTxtFile;
             this.view.OpenedRemoveQuery += OpenedRemove;
             this.view.OpenedChooseQuery += OpenedChoose;
+            this.view.CountPropertiesQuery += PropertiesCount;
         }
-        
-        
-        
+
+
+        private Dictionary<string, Signal> signals;
+        private Dictionary<string, SignalPanelArgs> signalLayoutArgs;
+        private Dictionary<string, PropertyPanelArgs> signalPropertyArgs;
+
+        private string current;
 
         private IView view;
         private Model model;
-        private SignalHolder holder;
     }
 }

@@ -25,7 +25,7 @@ namespace SignalProcessor.ModelLogic.Import
             for (int i = 0; i < txtValues.Length; ++i)
                 values[i] = double.Parse(txtValues[i]);
 
-            return new Signal(values);
+            return new Signal(values, file.Name.Remove(file.Name.Length - 4));
         }
     }
 }

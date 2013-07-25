@@ -16,6 +16,7 @@ using System.Windows.Shapes;
 using SignalProcessor.PresenterLogic;
 using System.Windows.Forms.DataVisualization;
 using System.Windows.Forms.DataVisualization.Charting;
+using System.Windows.Forms.Integration;
 
 namespace SignalProcessor.ViewLogic
 {
@@ -26,106 +27,104 @@ namespace SignalProcessor.ViewLogic
     {
 
 
-
-        public void SignalLayout(SignalPresenter signal)
-        {
-            /// TODO here:
-            /// optimize process: if I create plot then save it and get it ready when asked again
-            /// im mainwindow make a collection of plots. add and delete them then addind/deliting signal to/from workspace
-            
-            this.lblCurrentlyChosen.Content = signal.Name;
-            chartTest.ChartAreas.Clear();
-            chartTest.Series.Clear();
-            ChartArea area = new ChartArea();
-            Series series = new Series(signal.Name);
-            series.Points.DataBindXY(signal.T, signal.X);
-            series.ChartType = SeriesChartType.Line;
-            series.LegendText = signal.Name;
-            chartTest.ChartAreas.Add(area);
-            chartTest.Series.Add(series);
-            chartTest.Visible = true;
-
-        
-        }
-
-        
-
-        //public event EventHandler<EventArgs> SignalLayoutQuery;
-
-
-        public void SignalPropertiesLayout(SignalPresenter signal)
-        {
-            // adding properties to control panel
-            this.ControlGrid.Children.Clear();
-            this.ControlGrid.Children.Add(signal.GetLayoutPropertiesPanel());
-        
-        }
-
-
-
-
-
-        private StackPanel GetPanelLayout(SignalPresenter signal)
-        {
-            StackPanel panel = new StackPanel();
-            panel.Margin = new Thickness(5);
-            panel.Orientation = Orientation.Vertical;
-            Label lbl = new Label();
-            lbl.Content = "Properties of " + this.Name;
-            panel.Children.Add(lbl);
-
-            if (signal.Properities == null)
-            {
-                Button btn = new Button();
-                btn.Name = this.Name;
-                btn.Style = App.Current.FindResource("PanelButtonStyle") as Style;
-                btn.Height = 20;
-                btn.Width = 150;
-                btn.Content = "Count";
-                btn.Margin = new Thickness(5);
-                btn.Click += btnSignal_Click;
-                panel.Children.Add(btn);
-
-            }
-            else
-            {
-
-            }
-            return panel;
-        }
-
-        private StackPanel GetSignalPanel(SignalPanelArgs args)
-        {
-            StackPanel panel = new StackPanel();
-
-            return panel;
-        }
-
-        private StackPanel GetPropertiesPanel(PropertyPanelArgs args)
-        {
-            StackPanel panel = new StackPanel();
-
-            return panel;
-        }
-
         private void PropertyPanelUpdate(StackPanel panel)
         {
-            // here we should put in to view
             ControlGrid.Children.Clear();
             ControlGrid.Children.Add(panel);
         }
 
         private void SignalLayoutUpdate(StackPanel panel)
         {
-            // here we should to view
             panelChart.Children.Clear();
             panelChart.Children.Add(panel);
         }
 
-        private void btnSignal_Click(object sender, EventArgs e)
+
+        
+        /// <summary>
+        /// methods for getting ready panels based on Args types
+        /// </summary>
+        /// <param name="args"></param>
+
+
+        public void SignalLayout(SignalPanelArgs args)
         {
 
+            panelChart.Children.Clear();
+            lblCurrentlyChosen.Content = args.Name;
+            for (int i = 0; i < args.ChartCount; ++i)
+            {
+                WindowsFormsHost host = new WindowsFormsHost();
+                host.Child = args.GetChart(i);
+                this.panelChart.Children.Add(host);
+            }
+
         }
+
+        public void PropertiesLayout(PropertyPanelArgs args)
+        {
+            this.PropertyPanelUpdate(GetPropertiesPanel(args));
+        }
+
+        private void btnPropertiesCount_Click(object sender, EventArgs e)
+        {
+            CountPropertiesQuery(sender, e);
+        }
+
+        public event EventHandler<EventArgs> CountPropertiesQuery;
+
+
+
+
+
+
+        ///
+        /// Methods for getting panel with data and controls
+        ///
+
+        private StackPanel GetPropertiesPanel(PropertyPanelArgs args)
+        {
+            StackPanel panel = new StackPanel();
+            panel.Orientation = Orientation.Vertical;
+            panel.Margin = new Thickness(5);
+
+            Label lblName = new Label();
+            lblName.FontSize = 16;
+            lblName.FontWeight = FontWeights.Bold;
+            lblName.Content = args.Name + " properties:";
+            panel.Children.Add(lblName);
+
+            if (args.Properties == null)
+            {
+                Button btn = new Button();
+                btn.Click += btnPropertiesCount_Click;
+                btn.Content = "Count properties";
+                btn.Style = App.Current.FindResource("PanelButtonStyle") as Style;
+                btn.Width = 120;
+                btn.Height = 30;
+                panel.Children.Add(btn);
+            }
+            else
+            {
+                Label lblPoints = new Label();
+                lblPoints.Content = "Points: " + args.Properties.Points.ToString();
+                panel.Children.Add(lblPoints);
+
+                Label lblDuration = new Label(); ;
+                lblDuration.Content = "Duration: " + args.Properties.Duration.ToString();
+                panel.Children.Add(lblDuration);
+
+                Label lblAverage = new Label();
+                lblAverage.Content = "Average: " + args.Properties.Average.ToString();
+                panel.Children.Add(lblAverage);
+
+                // else to be added
+
+            }
+
+            return panel;
+        }
+
 
     }
 }

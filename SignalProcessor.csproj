@@ -57,14 +57,16 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="IView.cs" />
-    <Compile Include="ModelLogic\Environment.cs" />
     <Compile Include="ModelLogic\Import\IImporter.cs" />
     <Compile Include="ModelLogic\Import\ImporterTxt.cs" />
     <Compile Include="ModelLogic\Model.cs" />
     <Compile Include="ModelLogic\Signal.cs" />
     <Compile Include="ModelLogic\SignalProperties.cs" />
+    <Compile Include="PresenterLogic\Converters.cs" />
+    <Compile Include="PresenterLogic\Getters.cs" />
     <Compile Include="PresenterLogic\Presenter.cs" />
-    <Compile Include="PresenterLogic\SignalPresenter.cs" />
+    <Compile Include="PresenterLogic\Args\PropertyPanelArgs.cs" />
+    <Compile Include="PresenterLogic\Args\SignalPanelArgs.cs" />
     <Compile Include="PresenterLogic\ViewQueryHandlers.cs" />
     <Compile Include="ViewLogic\EventHandlers.cs" />
     <Compile Include="ViewLogic\PanelHandlers\FilePanelHandlers.cs" />
@@ -81,6 +83,10 @@
     <Compile Include="ViewLogic\VisibilityToColorConverter.cs" />
     <Compile Include="ViewLogic\WidthConverter.cs" />
     <Compile Include="ViewModel.cs" />
+    <Page Include="Styles\LabelHeaderStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Styles\PanelStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

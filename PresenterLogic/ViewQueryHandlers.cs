@@ -21,8 +21,20 @@ namespace SignalProcessor.PresenterLogic
             // here we have to say to model what to do
 
             string txtFileName = view.GetImportTxtFilename();
-            model.ImportFile(txtFileName);
-            OpenedListUpdate();
+            //model.ImportFile(txtFileName);
+            //OpenedListUpdate();
+            Signal signal = model.ImportTxt(txtFileName);
+            if (signal == null)
+                return;
+            try
+            {
+                signals.Add(signal.Name, signal);
+                this.OpenedListUpdate();
+            }
+            catch
+            {
+                // message to be generated
+            }
         }
 
         private void OpenedRemove(object sender, EventArgs e)
@@ -30,7 +42,7 @@ namespace SignalProcessor.PresenterLogic
             string name = sender as string;
             if (name == null)
                 return;
-            model.RemoveItem(name);
+            this.signals.Remove(name);
             OpenedListUpdate();
         }
 
@@ -41,21 +53,33 @@ namespace SignalProcessor.PresenterLogic
                 return;
 
             // TODO here: tell model to change currenly chosen signal
-            Signal current = model.ChooseItem(name);
-            SignalPresenter presenter = new SignalPresenter(current);
-            view.SignalLayout(presenter);
+            //Signal current = model.ChooseItem(name);
+            //SignalPresenter presenter = new SignalPresenter(current);
+            //view.SignalLayout(presenter);
+            
+            
+            this.current = name;
+            // here we have to tell view to show signal and it's properties
+            view.SignalLayout(GetSignalArgs(current));
+            view.PropertiesLayout(GetPropertyArgs(current));
+
         }
 
         private void PropertiesCount(object sender, EventArgs e)
         {
-            
+            signals[current].CountProperities();
+            PropertyLayoutArgsUpdate(current);
+            view.PropertiesLayout(GetPropertyArgs(current));
         }
 
         private void OpenedListUpdate()
         {
-            List<string> items = model.GetItems();
-            view.OpenedSetItems(items);
+            //List<string> items = model.GetItems();
+            //view.OpenedSetItems(items);
+            view.OpenedSetItems(GetItemList());
         }
+
+        
 
 
 
