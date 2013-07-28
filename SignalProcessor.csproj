@@ -59,12 +59,14 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="IView.cs" />
+    <Compile Include="ModelLogic\SignalComputations.cs" />
     <Compile Include="ModelLogic\SignalData.cs" />
     <Compile Include="ModelLogic\Import\IImporter.cs" />
     <Compile Include="ModelLogic\Import\ImporterTxt.cs" />
     <Compile Include="ModelLogic\Model.cs" />
     <Compile Include="ModelLogic\Signal.cs" />
     <Compile Include="ModelLogic\SignalProperties.cs" />
+    <Compile Include="ModelLogic\Wavelet.cs" />
     <Compile Include="PresenterLogic\ChartConstructor\ChartConstructor.cs" />
     <Compile Include="PresenterLogic\ChartConstructor\WpfChartConstructor.cs" />
     <Compile Include="PresenterLogic\Converters.cs" />

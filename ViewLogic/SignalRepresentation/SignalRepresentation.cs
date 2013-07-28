@@ -57,7 +57,9 @@ namespace SignalProcessor.ViewLogic
                 WindowsFormsHost host = new WindowsFormsHost();
                 host.Child = args.GetChart(i);
                 this.panelChart.Children.Add(host);
+                //this.panelChart.Children.Add(args.GetChart(i));
             }
+
 
         }
 
@@ -118,6 +120,12 @@ namespace SignalProcessor.ViewLogic
                 lblAverage.Content = "Average: " + args.Properties.Average.ToString();
                 panel.Children.Add(lblAverage);
 
+                Label lblVariance = new Label();
+                lblVariance.Content = "Variance: " + args.Properties.Variance.ToString();
+                panel.Children.Add(lblVariance);
+
+
+                
                 // else to be added
 
             }
@@ -139,6 +147,10 @@ namespace SignalProcessor.ViewLogic
             scvHeightBinding.Converter = new HeightConverter();
             scv.SetBinding(HeightProperty, scvHeightBinding);
 
+            Label lblHeader = new Label();
+            lblHeader.Content = "Wavelet tranform";
+            lblHeader.FontWeight = FontWeights.Black;
+            waveletPanel.Children.Add(lblHeader);
 
             for (int i = 0; i < args.WaveletLevels; ++i)
             {

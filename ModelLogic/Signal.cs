@@ -10,7 +10,7 @@ namespace SignalProcessor.ModelLogic
     /// <summary>
     /// class represents signal (time series)
     /// </summary>
-    public class Signal
+    public partial class Signal
     {
 
         // default constructor creates empty signal
@@ -151,7 +151,8 @@ namespace SignalProcessor.ModelLogic
         private bool properitiesReady;
         private SignalProperties properities;
 
-        
+        private double average;
+        private double variance;
 
 
         public string Name
@@ -186,33 +187,6 @@ namespace SignalProcessor.ModelLogic
 
 
 
-        private int GetPointsCount()
-        {
-            return t.Length;
-        }
-
-        private double GetDuration()
-        {
-            return (t[t.Length - 1] - t[0]);
-        }
-
-        private double GetAverage()
-        {
-            // average here to be counted
-            return 0.0;
-        }
-
-        private double GetVariance()
-        {
-            // variance here to be counted
-            return 1.0;
-        }
-
-        private int GetWaveletLevelsAvailable()
-        {
-            return (int)Math.Floor(Math.Log(t.Length, 2));            
-        }
-
         
         /// Wavelet levels
         /// 
@@ -232,7 +206,11 @@ namespace SignalProcessor.ModelLogic
 
         public void CountWavelet(int lvl)
         {
-                
+            if (waveletComputer == null)
+            {
+                waveletComputer = new Wavelet();
+                waveletComputer.doSWT(this.X);
+            }
 
             if (waveletCalculated[lvl-1] == true)
                 return;
@@ -246,10 +224,12 @@ namespace SignalProcessor.ModelLogic
             // here we have to call method for caclulations
             // but now we are just copying signal
 
-            wavelets[lvl-1] = new SignalData(this.T, this.X);
+            wavelets[lvl - 1] = this.GetWaveletLevel(lvl);
 
             waveletCalculated[lvl-1] = true;
         }
+
+        private Wavelet waveletComputer;
 
 
     }

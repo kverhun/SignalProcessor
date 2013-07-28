@@ -10,7 +10,8 @@
         
         Title="Signal processor" Height="480" Width="800"
         StateChanged="mainWindow_StateChanged"
-        
+        MinWidth="480"
+        MinHeight="320"
         >
     <Window.Resources>
         <l:WidthConverter x:Key="widthConverter" />
@@ -334,15 +335,15 @@
     					Grid.Row="0"
                            />
                     
-                    <ScrollViewer
-                        VerticalScrollBarVisibility="Auto">
-                        <StackPanel x:Name="panelChart"
-    					    
-    					    Grid.Column="0"
-    					    Grid.Row="1"
-    					    Margin="5"
-                                        />
-                    </ScrollViewer>
+                        <ScrollViewer
+                            VerticalScrollBarVisibility="Auto"
+                            VerticalContentAlignment="Top"
+                            >
+                            <StackPanel x:Name="panelChart"
+    					        Margin="5"
+                                            />
+                        </ScrollViewer>
+                    
                 </Grid>
             </DockPanel>
         </DockPanel>
