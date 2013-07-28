@@ -31,6 +31,22 @@ namespace SignalProcessor.ViewLogic
         }
     }
 
+    class HeightConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            double hei = (double)value;
+            return (double)(hei - 150);
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+
+
+            return 150 + (double)value;
+        }
+    }
+
 
 
 

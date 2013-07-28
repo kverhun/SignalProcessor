@@ -55,13 +55,13 @@ namespace SignalProcessor.PresenterLogic
 
         private void SignalLayoutArgsUpdate(string name)
         {
-            signalLayoutArgs[name] = new SignalPanelArgs(signals[name]);
+            signalLayoutArgs[name] = new SignalPanelArgs(signals[name],signalWaveletShowed[name]);
         }
 
 
         private void PropertyLayoutArgsUpdate(string name)
         {
-            signalPropertyArgs[name] = new PropertyPanelArgs(signals[name]);
+            signalPropertyArgs[name] = new PropertyPanelArgs(signals[name], signalWaveletShowed[name]);
         }
     }
 }

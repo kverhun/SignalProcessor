@@ -52,7 +52,7 @@ namespace SignalProcessor.ViewLogic
                 btn.Name = item;
                 btn.Style = App.Current.FindResource("PanelButtonStyle") as Style;
                 btn.Height = 20;
-                btn.Width = 150;
+                btn.MinWidth = 120;
                 btn.Content = item;
                 btn.Margin = new Thickness(5);
                 btn.Click += btnSignal_Click;

@@ -19,21 +19,27 @@ namespace SignalProcessor.PresenterLogic
         {
             charts = new List<Chart>();
             Name = signal.Name;
-            
-            /// temporary -- only 1 chart is added
-            /// 
-            this.ChartCount = 1;
+            Chart chart = ChartConstructor.Construct(signal);
 
-            Chart chart = new Chart();
-            ChartArea area = new ChartArea();
-            Series series = new Series(signal.Name);
-            series.Points.DataBindXY(signal.T, signal.X);
-            series.ChartType = SeriesChartType.Line;
-            series.LegendText = signal.Name;
-            chart.ChartAreas.Add(area);
-            chart.Series.Add(series);
             charts.Add(chart);
         }
+
+        public SignalPanelArgs(Signal signal, List<int> lvlShowed)
+        {
+            charts = new List<Chart>();
+            Name = signal.Name;
+
+            Chart chart = ChartConstructor.Construct(signal);
+            charts.Add(chart);
+
+            foreach (int lvl in lvlShowed)
+            {
+                Chart chartWave = ChartConstructor.Construct(signal.GetWavelet(lvl), "Wavelet transfort level " + lvl.ToString());
+                charts.Add(chartWave);
+            }
+
+        }
+
 
         public string Name
         {
@@ -49,7 +55,13 @@ namespace SignalProcessor.PresenterLogic
                 return charts[index];
         }
 
-        public int ChartCount;
+        public int ChartCount
+        {
+            get
+            {
+                return this.charts.Count;
+            }
+        }
 
         private List<Chart> charts;
 

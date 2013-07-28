@@ -100,7 +100,7 @@ namespace SignalProcessor.ViewLogic
                 btn.Click += btnPropertiesCount_Click;
                 btn.Content = "Count properties";
                 btn.Style = App.Current.FindResource("PanelButtonStyle") as Style;
-                btn.Width = 120;
+                btn.Width = 170;
                 btn.Height = 30;
                 panel.Children.Add(btn);
             }
@@ -122,9 +122,124 @@ namespace SignalProcessor.ViewLogic
 
             }
 
+            WrapPanel waveletPanel = new WrapPanel();
+            waveletPanel.Orientation = Orientation.Vertical;
+            waveletPanel.Margin = new Thickness(3);
+            waveletPanel.Background = Brushes.Gainsboro;
+            DockPanel.SetDock(waveletPanel, Dock.Top);
+
+            DockPanel dockPanel = new DockPanel();
+            dockPanel.Children.Add(waveletPanel);
+
+            ScrollViewer scv = new ScrollViewer();
+            scv.Content = dockPanel;
+            Binding scvHeightBinding = new Binding();
+            scvHeightBinding.Source = App.Current.MainWindow;
+            scvHeightBinding.Path = new PropertyPath("Height");
+            scvHeightBinding.Converter = new HeightConverter();
+            scv.SetBinding(HeightProperty, scvHeightBinding);
+
+
+            for (int i = 0; i < args.WaveletLevels; ++i)
+            {
+                Label lbl = new Label();
+                lbl.Content = "Level " + (i + 1).ToString();
+                waveletPanel.Children.Add(lbl);
+                StackPanel localPanel = new StackPanel();
+                localPanel.Orientation = Orientation.Horizontal;
+                if (args.WaveletCounted[i] == true)
+                {
+                    Button btnShow = new Button();
+                    btnShow.Click += btnWavletShowClick;
+                    btnShow.Name = "btnWaveletShow_" + (i + 1).ToString();
+                    if (args.WaveletShown[i] == false)
+                        btnShow.Content = "Show";
+                    else
+                        btnShow.Content = "Hide";
+                    btnShow.Style = App.Current.FindResource("PanelButtonStyle") as Style;
+                    btnShow.Width = 100;
+                    btnShow.Height = 20;
+                    localPanel.Children.Add(btnShow);
+
+                    Button btnOpen = new Button();
+                    btnOpen.Click += btnWavletOpenClick;
+                    btnOpen.Name = "btnWaveletShow_" + (i + 1).ToString();
+                    btnOpen.Content = "Open";
+                    btnOpen.Style = App.Current.FindResource("PanelButtonStyle") as Style;
+                    btnOpen.Width = 100;
+                    btnOpen.Height = 20;
+                    localPanel.Children.Add(btnOpen);
+                }
+                else
+                {
+                    Button btn = new Button();
+                    btn.Click += btnWaveletCount_Click;
+                    btn.Name = "btnWaveletCount_" + (i + 1).ToString();
+                    btn.Content = "Count";
+                    btn.Style = App.Current.FindResource("PanelButtonStyle") as Style;
+                    btn.Width = 100;
+                    btn.Height = 20;
+                    localPanel.Children.Add(btn);
+                }
+                waveletPanel.Children.Add(localPanel);
+
+            }
+            //panel.Children.Add(waveletBasePanel);
+            panel.Children.Add(scv);
+
             return panel;
         }
 
 
+        private void btnWaveletCount_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                string btnName = (sender as Button).Name;
+                string lvlStr = btnName.Remove(0, btnName.IndexOf('_') + 1);
+                CountWaveletQuery(lvlStr, e);
+            }
+            catch
+            {
+                return;
+            }
+        }
+
+        private void btnWavletShowClick(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Button btn = sender as Button;
+                string btnName = btn.Name;
+                string lvlStr = btnName.Remove(0, btnName.IndexOf('_') + 1);
+
+                SwitchWaveletStateQuery(lvlStr, e);
+            }
+            catch
+            {
+                return;
+            }
+        }
+
+        private void btnWavletOpenClick(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                string btnName = (sender as Button).Name;
+                string lvlStr = btnName.Remove(0, btnName.IndexOf('_') + 1);
+                OpenWaveletQuery(lvlStr, e);
+            }
+            catch
+            {
+                return;
+            }
+        }
+
+
+        public event EventHandler<EventArgs> CountWaveletQuery;
+
+        public event EventHandler<EventArgs> SwitchWaveletStateQuery;
+
+        public event EventHandler<EventArgs> OpenWaveletQuery;
     }
 }

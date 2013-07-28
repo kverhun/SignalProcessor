@@ -50,10 +50,7 @@ namespace SignalProcessor.ViewLogic
                 this.DragMove();
         }
 
-        private void StackPanel_MouseDown1(object sender, MouseButtonEventArgs e)
-        {
 
-        }
 
         private void DockPanelMove_MouseDown(object sender, MouseButtonEventArgs e)
         {

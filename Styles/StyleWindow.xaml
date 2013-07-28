@@ -6,7 +6,7 @@
         <Setter Property="BorderThickness" Value="0" />
 
         <Setter Property="ResizeMode" Value="CanResizeWithGrip" />
-        <Setter Property="WindowChrome.ResizeBorderThickness" Value="1" />
+        <Setter Property="WindowChrome.ResizeBorderThickness" Value="3" />
 
         <!--<Setter Property="AllowsTransparency" Value="True" /> -->
         

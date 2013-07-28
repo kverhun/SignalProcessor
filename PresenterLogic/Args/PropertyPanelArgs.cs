@@ -17,6 +17,17 @@ namespace SignalProcessor.PresenterLogic
             SignalProperties props = signal.Properities;
             Properties = props;
             Name = signal.Name;
+            WaveletCounted = signal.waveletCalculated;
+            WaveletLevels = signal.WaveletLevelsAvailable;
+        }
+
+        public PropertyPanelArgs(Signal signal, List<int> waveletShown)
+            : this(signal)
+        {
+            WaveletShown = new List<bool>();
+            for (int i = 0; i < WaveletLevels; ++i)
+                if (waveletShown.Contains(i+1)) WaveletShown.Add(true);
+                else WaveletShown.Add(false);
         }
 
         public string Name
@@ -30,6 +41,26 @@ namespace SignalProcessor.PresenterLogic
             get;
             private set;
         }
+
+        public int WaveletLevels
+        {
+            get;
+            private set;
+        }
+
+        public List<bool> WaveletCounted
+        {
+            get;
+            private set;
+        }
+
+        public List<bool> WaveletShown
+        {
+            get;
+            private set;
+        }
+
+        
 
     
     }

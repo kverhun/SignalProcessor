@@ -16,6 +16,13 @@ namespace SignalProcessor.PresenterLogic
     /// </summary>
     partial class Presenter
     {
+        private void SignalAdd(Signal signal, string name)
+        {
+            signals.Add(name, signal);
+            signalWaveletShowed.Add(name, new List<int>());
+        }
+
+
         private void ImportTxtFile(object sender, EventArgs e)
         {
             // here we have to say to model what to do
@@ -28,7 +35,8 @@ namespace SignalProcessor.PresenterLogic
                 return;
             try
             {
-                signals.Add(signal.Name, signal);
+                //signals.Add(signal.Name, signal);
+                SignalAdd(signal, signal.Name);
                 this.OpenedListUpdate();
             }
             catch
@@ -79,11 +87,98 @@ namespace SignalProcessor.PresenterLogic
             view.OpenedSetItems(GetItemList());
         }
 
-        
+        private void PropertiesWaveletCount(object sender, EventArgs e)
+        {
+            string lvlString = sender as string;
+            if (lvlString == null)
+                return;
+            int lvl;
+            try
+            {
+                lvl = int.Parse(lvlString);
+            }
+            catch
+            {
+                return;
+            }
+            signals[current].CountWavelet(lvl);
+            PropertyLayoutArgsUpdate(current);
+            view.PropertiesLayout(GetPropertyArgs(current));
+        }
 
 
+        // if show/hide button is pressed
+        // sender is a string with wavelet level number
+        private void PropertiesSwitchWaveletState(object sender, EventArgs e)
+        {
+            int lvl;
+            try
+            {
+                lvl = int.Parse(sender as string);
+            }
+            catch
+            {
+                return;
+            }
+
+            if (signalWaveletShowed[current].Contains(lvl))
+            {
+                signalWaveletShowed[current].Remove(lvl);
+            }
+            else
+            {
+                signalWaveletShowed[current].Add(lvl);
+            }
+            PropertyLayoutArgsUpdate(current);
+            SignalLayoutArgsUpdate(current);
+            view.PropertiesLayout(GetPropertyArgs(current));
+            view.SignalLayout(GetSignalArgs(current));
+        }
+
+        private void PropertiesWaveletCountQuery(object sender, EventArgs e)
+        {
+            int lvl;
+            try
+            {
+                lvl = int.Parse(sender as string);
+            }
+            catch
+            {
+                return;
+            }
+
+            if (signals[current].waveletCalculated[lvl - 1] == true)
+                return;
+            else
+            {
+                signals[current].CountWavelet(lvl);
+            }
+
+            PropertyLayoutArgsUpdate(current);
+            //SignalLayoutArgsUpdate(current);
+            view.PropertiesLayout(GetPropertyArgs(current));
+            //view.SignalLayout(GetSignalArgs(current));
+        }
 
 
+        private void PropertiesWaveletOpenQuery(object sender, EventArgs e)
+        {
+            int lvl;
+            try
+            {
+                lvl = int.Parse(sender as string);
+            }
+            catch
+            {
+                return;
+            }
+
+
+            SignalData dt = signals[current].GetWavelet(lvl);
+            Signal signal = new Signal(dt, signals[current].Name + "_wavelet_level_" + lvl.ToString());
+            this.SignalAdd(signal, signal.Name);
+            this.OpenedListUpdate();
+        }
 
 
     }

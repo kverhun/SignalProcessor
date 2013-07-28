@@ -18,7 +18,7 @@ namespace SignalProcessor.PresenterLogic
     {
         private SignalPanelArgs ComputeSignalArgs(string name)
         {
-            return new SignalPanelArgs(signals[name]);
+            return new SignalPanelArgs(signals[name],signalWaveletShowed[name]);
         }
 
         private PropertyPanelArgs ComputeSignalPropArgs(string name)
