@@ -232,5 +232,20 @@ namespace SignalProcessor.ModelLogic
         private Wavelet waveletComputer;
 
 
+
+
+        public PDMData GetPDM(int T1, int T2)
+        {
+        //    return GetPDM(this.X, T1, T2);
+            CurrentPDMData = GetPDM(this.X, T1, T2);
+            return CurrentPDMData;
+        }
+
+        public PDMData CurrentPDMData
+        {
+            get;
+            set;
+        }
+
     }
 }

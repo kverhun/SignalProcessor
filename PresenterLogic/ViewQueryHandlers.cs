@@ -20,6 +20,7 @@ namespace SignalProcessor.PresenterLogic
         {
             signals.Add(name, signal);
             signalWaveletShowed.Add(name, new List<int>());
+            signalPDMData.Add(name, null);
         }
 
 
@@ -199,6 +200,31 @@ namespace SignalProcessor.PresenterLogic
             this.OpenedListUpdate();
         }
 
+        private void PropertiesShowPDMQuery(object sender, EventArgs e)
+        {
+            int T1;
+            int T2;
+            string strT1;
+            string strT2;
+            string arg = sender as string;
+            try
+            {
+                strT1 = arg.Remove(arg.IndexOf('_'));
+                strT2 = arg.Remove(0, arg.IndexOf('_') + 1);
+                T1 = int.Parse(strT1);
+                T2 = int.Parse(strT2);
+                PDMData data = signals[current].GetPDM(T1, T2);
+                signalPDMData[current] = data;
+                this.PropertyLayoutArgsUpdate(current);
+                this.SignalLayoutArgsUpdate(current);
+                view.PropertiesLayout(signalPropertyArgs[current]);
+                view.SignalLayout(signalLayoutArgs[current]);
+            }
+            catch
+            {
+                return;
+            }
+        }
 
     }
 }

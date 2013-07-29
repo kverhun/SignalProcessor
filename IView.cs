@@ -26,7 +26,8 @@ namespace SignalProcessor
         // Signal representation
         void SignalLayout(SignalPanelArgs args);
         void PropertiesLayout(PropertyPanelArgs args);
-        event EventHandler<EventArgs> CountPropertiesQuery;        
+        event EventHandler<EventArgs> CountPropertiesQuery;
+        event EventHandler<EventArgs> ShowPDMQuery;
 
         // wavelets
         event EventHandler<EventArgs> CountWaveletQuery;

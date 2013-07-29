@@ -55,7 +55,8 @@ namespace SignalProcessor.PresenterLogic
 
         private void SignalLayoutArgsUpdate(string name)
         {
-            signalLayoutArgs[name] = new SignalPanelArgs(signals[name],signalWaveletShowed[name]);
+
+            signalLayoutArgs[name] = new SignalPanelArgs(signals[name],signalWaveletShowed[name],signalPDMData[current] == null ? false : true);
         }
 
 

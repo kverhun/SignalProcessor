@@ -25,6 +25,7 @@ namespace SignalProcessor.PresenterLogic
             signalLayoutArgs = new Dictionary<string, SignalPanelArgs>();
             signalPropertyArgs = new Dictionary<string, PropertyPanelArgs>();
             signalWaveletShowed = new Dictionary<string, List<int>>();
+            signalPDMData = new Dictionary<string, PDMData>();
         }
 
         private void SetEventHandlers()
@@ -37,7 +38,7 @@ namespace SignalProcessor.PresenterLogic
             this.view.CountWaveletQuery += PropertiesWaveletCountQuery;
             this.view.SwitchWaveletStateQuery += PropertiesSwitchWaveletState;
             this.view.OpenWaveletQuery += PropertiesWaveletOpenQuery;
-            
+            this.view.ShowPDMQuery += PropertiesShowPDMQuery;
         }
 
 
@@ -45,7 +46,7 @@ namespace SignalProcessor.PresenterLogic
         private Dictionary<string, SignalPanelArgs> signalLayoutArgs;
         private Dictionary<string, PropertyPanelArgs> signalPropertyArgs;
         private Dictionary<string, List<int>> signalWaveletShowed;
-
+        private Dictionary<string, PDMData> signalPDMData;
        
 
         private string current;

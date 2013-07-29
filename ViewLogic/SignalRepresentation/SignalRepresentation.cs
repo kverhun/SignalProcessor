@@ -86,6 +86,15 @@ namespace SignalProcessor.ViewLogic
 
         private StackPanel GetPropertiesPanel(PropertyPanelArgs args)
         {
+            try
+            {
+                this.UnregisterName("txtT1");
+                this.UnregisterName("txtT2");
+            }
+            catch
+            {
+
+            }
             StackPanel panel = new StackPanel();
             panel.Orientation = Orientation.Vertical;
             panel.Margin = new Thickness(5);
@@ -130,6 +139,49 @@ namespace SignalProcessor.ViewLogic
 
             }
 
+            ///
+            /// PDM Panel
+            ///
+            StackPanel PDMPanel = new StackPanel();
+            PDMPanel.Orientation = Orientation.Vertical;
+            Label PDMLabel = new Label();
+            PDMLabel.Content = "PDM";
+            PDMLabel.FontWeight = FontWeights.Black;
+            PDMPanel.Children.Add(PDMLabel);
+            PDMPanel.Background = Brushes.Gainsboro;
+
+            StackPanel PDMSubPanel = new StackPanel();
+            PDMSubPanel.Visibility = Visibility.Visible;
+            PDMSubPanel.Orientation = Orientation.Horizontal;
+            Button PDMSubButton = new Button();
+
+            PDMSubButton.Content = "Show";
+            PDMSubButton.Style = App.Current.FindResource("PanelButtonStyle") as Style;
+            PDMSubButton.Width = 100;
+            PDMSubButton.Height = 20;
+            PDMSubButton.Click += btnPDMShow_Click;
+            PDMSubPanel.Children.Add(PDMSubButton);
+
+            TextBox txtT1 = new TextBox();
+            txtT1.MinWidth = 45;
+            txtT1.Height = 25;
+            txtT1.Name = "txtT1";
+
+            TextBox txtT2 = new TextBox();
+            txtT2.MinWidth = 45;
+            txtT2.Height = 25;
+            txtT2.Name = "txtT2";
+
+            this.RegisterName("txtT1", txtT1);
+            this.RegisterName("txtT2", txtT2);
+            
+            PDMSubPanel.Children.Add(txtT1);
+            PDMSubPanel.Children.Add(txtT2);
+            PDMPanel.Children.Add(PDMSubPanel);
+            panel.Children.Add(PDMPanel);
+            ///
+            /// Wavelet Panel
+            ///
             WrapPanel waveletPanel = new WrapPanel();
             waveletPanel.Orientation = Orientation.Vertical;
             waveletPanel.Margin = new Thickness(3);
@@ -248,10 +300,27 @@ namespace SignalProcessor.ViewLogic
         }
 
 
+        private void btnPDMShow_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {                
+                string msg = (this.FindName("txtT1") as TextBox).Text + "_" + (this.FindName("txtT2") as TextBox).Text;
+                ShowPDMQuery(msg, null);
+            }
+            catch
+            {
+                return;
+            }
+            
+
+        }
+
         public event EventHandler<EventArgs> CountWaveletQuery;
 
         public event EventHandler<EventArgs> SwitchWaveletStateQuery;
 
         public event EventHandler<EventArgs> OpenWaveletQuery;
+
+        public event EventHandler<EventArgs> ShowPDMQuery;
     }
 }

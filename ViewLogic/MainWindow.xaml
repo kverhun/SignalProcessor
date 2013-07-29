@@ -399,7 +399,20 @@
     				Width="{Binding ActualWidth, Converter={StaticResource widthConverter}, ElementName=mainWindow}"          
     				Style="{StaticResource PopupPanelStyle}"                    
     				Visibility="{Binding IsExpanded, Converter={StaticResource boolToVisConv}, ElementName=expanderControl}"
-                            />
+                    
+                            >
+                    <!--<StackPanel x:Name="panelPDM" Orientation="Vertical" Background="Gainsboro">
+                        <Label FontWeight="Black">PDM</Label>
+                        <StackPanel x:Name="subpanelPDM" Orientation="Horizontal">
+                            <Button x:Name="btnShowPDM" Style="{StaticResource PanelButtonStyle}"
+                                    Click="btnPDMShow_Click">
+                                Show
+                            </Button>
+                            <TextBox x:Name="txtT1" Height="25" MinWidth="40" />
+                            <TextBox x:Name="txtT2" Height="25" MinWidth="40" />
+                        </StackPanel>
+                    </StackPanel>-->
+                </DockPanel>
 
                 <Expander x:Name="expanderControl"                              
     				Grid.Column="0"

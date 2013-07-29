@@ -40,6 +40,24 @@ namespace SignalProcessor.PresenterLogic
 
         }
 
+        public SignalPanelArgs(Signal signal, List<int> lvlShowed, bool PDMShowed)
+        {
+            charts = new List<Chart>();
+            Name = signal.Name;
+
+            Chart chart = ChartConstructor.Construct(signal);
+            charts.Add(chart);
+
+            foreach (int lvl in lvlShowed)
+            {
+                Chart chartWave = ChartConstructor.Construct(signal.GetWavelet(lvl), "Wavelet transfort level " + lvl.ToString());
+                charts.Add(chartWave);
+            }
+
+            if (PDMShowed)
+                charts.Add(ChartConstructor.Construct(signal.CurrentPDMData));
+        }
+
 
         public string Name
         {

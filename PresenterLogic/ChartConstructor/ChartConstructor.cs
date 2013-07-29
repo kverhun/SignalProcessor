@@ -57,7 +57,13 @@ namespace SignalProcessor.PresenterLogic
             return chart;
         }
 
-
+        public static Chart Construct(PDMData data)
+        {
+            double[] T = new double[data.TArray.Length];
+            for (int i = 0; i < data.TArray.Length; ++i)
+                T[i] = (double)data.TArray[i];
+            return Construct(new Signal(T, data.XArray));
+        }
         
 
     }
