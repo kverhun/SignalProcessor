@@ -86,7 +86,15 @@
                         Background="DarkGray"
                         Style="{StaticResource ButtonModernStyle}"
                         Width="20" Height="20"
-                        FontSize="20" FontFamily="Microsoft Yi Baiti" FontWeight="ExtraBlack"/>
+                        FontSize="20" FontFamily="Microsoft Yi Baiti" FontWeight="ExtraBlack">
+                        <Canvas Width="20" Height="20">
+                            
+                            <Rectangle Width="10" Height="10" Canvas.Top="4" Canvas.Left="4" Stroke="Black" StrokeThickness="1.5"
+                                       Fill="DarkGray"/>
+                            <Rectangle Width="10" Height="10" Canvas.Top="8" Canvas.Left="8" Stroke="Black" StrokeThickness="1.5"
+                                       Fill="DarkGray"/>
+                        </Canvas>
+                    </Button>
 
                     <Button
                         x:Name="btnMinimize"
