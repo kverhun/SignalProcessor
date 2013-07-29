@@ -59,6 +59,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="IView.cs" />
+    <Compile Include="ModelLogic\Export\ExporterTxt.cs" />
+    <Compile Include="ModelLogic\Export\IExporter.cs" />
     <Compile Include="ModelLogic\SignalComputations.cs" />
     <Compile Include="ModelLogic\SignalData.cs" />
     <Compile Include="ModelLogic\Import\IImporter.cs" />
@@ -76,6 +78,7 @@
     <Compile Include="PresenterLogic\Args\SignalPanelArgs.cs" />
     <Compile Include="PresenterLogic\ViewQueryHandlers.cs" />
     <Compile Include="ViewLogic\EventHandlers.cs" />
+    <Compile Include="ViewLogic\PanelHandlers\ExportPanelHandlers.cs" />
     <Compile Include="ViewLogic\PanelHandlers\FilePanelHandlers.cs" />
     <Compile Include="ViewLogic\MenuHandlers.cs" />
     <Compile Include="ViewLogic\ExportWindow.xaml.cs">

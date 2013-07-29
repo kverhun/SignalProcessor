@@ -45,12 +45,32 @@ namespace SignalProcessor.PresenterLogic
             }
         }
 
+        private void ExportTxtFile(object sender, EventArgs e)
+        {
+            string txtFileName = view.GetExportTxtFilename();
+            Signal signal = signals[current];
+            model.ExportTxt(signal, txtFileName);
+        }
+
         private void OpenedRemove(object sender, EventArgs e)
         {
             string name = sender as string;
             if (name == null)
                 return;
             this.signals.Remove(name);
+            this.signalPropertyArgs.Remove(name);
+            this.signalLayoutArgs.Remove(name);
+            this.signalWaveletShowed.Remove(name);
+            if (this.current == name)
+            {
+                if (signals.Count != 0)
+                    OpenedChoose(signals.Keys.First(), null);
+                else
+                {
+                   
+                }
+                
+            }
             OpenedListUpdate();
         }
 
@@ -159,7 +179,6 @@ namespace SignalProcessor.PresenterLogic
             view.PropertiesLayout(GetPropertyArgs(current));
             //view.SignalLayout(GetSignalArgs(current));
         }
-
 
         private void PropertiesWaveletOpenQuery(object sender, EventArgs e)
         {

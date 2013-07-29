@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.IO;
 
 using SignalProcessor.ModelLogic.Import;
+using SignalProcessor.ModelLogic.Export;
 
 namespace SignalProcessor.ModelLogic
 {
@@ -19,6 +20,7 @@ namespace SignalProcessor.ModelLogic
         public Model()
         {
             importerTxt = new ImporterTxt();
+            exporterTxt = new ExporterTxt();
         }
 
         public Signal ImportTxt(string fname)
@@ -31,10 +33,23 @@ namespace SignalProcessor.ModelLogic
             catch
             {
                 return null;
+            }            
+        }
+
+        public void ExportTxt(Signal signal, string fname)
+        {
+            FileInfo fl = new FileInfo(fname);
+            try
+            {
+                exporterTxt.Export(signal, fl);
             }
-            
+            catch
+            {
+                return;
+            }
         }
 
         private IImporter importerTxt;
+        private IExporter exporterTxt;
     }
 }

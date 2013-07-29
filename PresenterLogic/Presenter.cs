@@ -30,12 +30,14 @@ namespace SignalProcessor.PresenterLogic
         private void SetEventHandlers()
         {
             this.view.ImportTxtFileQuery += ImportTxtFile;
+            this.view.ExportTxtFileQuery += ExportTxtFile;
             this.view.OpenedRemoveQuery += OpenedRemove;
             this.view.OpenedChooseQuery += OpenedChoose;
             this.view.CountPropertiesQuery += PropertiesCount;
             this.view.CountWaveletQuery += PropertiesWaveletCountQuery;
             this.view.SwitchWaveletStateQuery += PropertiesSwitchWaveletState;
             this.view.OpenWaveletQuery += PropertiesWaveletOpenQuery;
+            
         }
 
 

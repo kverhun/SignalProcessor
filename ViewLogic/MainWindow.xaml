@@ -261,23 +261,122 @@
 
                     </StackPanel>
 
-
-
-
-
-
-
-
-
-
-
                 </DockPanel>
 
                 <DockPanel  x:Name="ExportPanel"
     				Width="{Binding ActualWidth, Converter={StaticResource widthConverter}, ElementName=mainWindow}"          
     				Style="{StaticResource PopupPanelStyle}"
                 >
-                    <Button Content="Export panel"/>
+                    <StackPanel Orientation="Vertical">
+
+                        <Label Style="{StaticResource lblHeaderStyle}" Content="Export"/>
+
+                        <DockPanel x:Name="txtExportPanel"
+    						Margin="5"
+    						Background="Gainsboro">
+                            <StackPanel Orientation="Horizontal"
+    							DockPanel.Dock="Top"
+                                >
+
+                                <Label Content="txt files"/>
+                                <Expander
+    								x:Name="txtExportPanelExpander"
+    								ExpandDirection="Down" IsExpanded="True"/>
+                            </StackPanel>
+                            <DockPanel
+    							Background="Gainsboro"
+    							Visibility="{Binding IsExpanded, Converter={StaticResource boolToVisConv}, ElementName=txtExportPanelExpander}">
+
+                                <StackPanel Orientation="Horizontal" Height="30" DockPanel.Dock="Top" 
+                                            >
+
+                                    <TextBox x:Name="exportTxtFoldername"
+    									DockPanel.Dock="Left"
+    									Height="20"
+    									Background="LightGray"
+    									IsReadOnly="True"
+    									MaxWidth="300"
+    									Text="Choose folder ... "/>
+                                    <Button 
+    									x:Name="btnExportTxtChooseFolder"
+    									DockPanel.Dock="Left"
+    									Height="15" Width="20"
+    									Margin="5"
+    									Style="{StaticResource PanelButtonStyle}"
+    									Click="btnExportTxtChooseFile_Click"
+    									AllowDrop="False" Content="..."/>
+
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Height="40" DockPanel.Dock="Bottom">
+                                    <Label Margin="5">Input file name: </Label>
+                                    <TextBox x:Name="txtTxtExportFileName" Height="20" MinWidth="70" MaxWidth="120" FontSize="10"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Height="40" DockPanel.Dock="Bottom">
+                                    <Button x:Name="btnExportTxt"
+    									Height="20"
+    									Style="{StaticResource PanelButtonStyle}"
+    									IsEnabled="False"
+    									Click="btnExportTxt_Click" Content="Export"/>
+                                    <Label x:Name="lblExportTxtState" />
+                                </StackPanel>
+                            </DockPanel>
+
+                        </DockPanel>
+
+
+
+                        <DockPanel x:Name="xlsExportPanel"
+    						Margin="5"
+    						Background="Gainsboro">
+                            <StackPanel Orientation="Horizontal"
+    							DockPanel.Dock="Top"
+                                >
+
+                                <Label Content="xls files"/>
+                                <Expander
+    								x:Name="xlsExportPanelExpander"
+    								ExpandDirection="Down" IsExpanded="True"/>
+                            </StackPanel>
+                            <DockPanel
+    							Background="Gainsboro"
+    							Visibility="{Binding IsExpanded, Converter={StaticResource boolToVisConv}, ElementName=xlsExportPanelExpander}">
+
+                                <StackPanel Orientation="Horizontal" Height="30" DockPanel.Dock="Top" 
+                                            >
+
+                                    <TextBox x:Name="exportXlsFilename"
+    									DockPanel.Dock="Left"
+    									Height="20"
+    									Background="LightGray"
+    									IsReadOnly="True"
+    									MaxWidth="300"
+    									Text="Choose forlder ... "/>
+                                    <Button 
+    									x:Name="btnExportXlsChooseFile"
+    									DockPanel.Dock="Left"
+    									Height="15" Width="20"
+    									Margin="5"
+    									Style="{StaticResource PanelButtonStyle}"
+    									Click="btnExportTxtChooseFile_Click"
+    									AllowDrop="False" Content="..."/>
+
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Height="40" DockPanel.Dock="Bottom">
+                                    <Button x:Name="btnExportXls"
+    									Height="20"
+    									Style="{StaticResource PanelButtonStyle}"
+    									IsEnabled="False"
+    									Click="btnImportTxt_Click" Content="Export"/>
+                                    <Label x:Name="lblExportXlsState" />
+                                </StackPanel>
+                            </DockPanel>
+
+                        </DockPanel>
+
+
+
+
+                    </StackPanel>
                 </DockPanel>
 
                 <DockPanel x:Name="OpenedPanel"
@@ -292,7 +391,7 @@
 
             </DockPanel>
 
-            <!--TODO here: choose aproproate container-->
+            
             <DockPanel
     			MouseDown="DockPanelMove_MouseDown">
 
@@ -338,6 +437,9 @@
                         <ScrollViewer
                             VerticalScrollBarVisibility="Auto"
                             VerticalContentAlignment="Top"
+                            Grid.Column="0"
+                            Grid.Row="1"
+                            MouseDown="DockPanelMove_MouseDown"
                             >
                             <StackPanel x:Name="panelChart"
     					        Margin="5"

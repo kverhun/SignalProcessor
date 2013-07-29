@@ -19,5 +19,6 @@ namespace SignalProcessor.ModelLogic.Import
         /// null if file is not valid
         /// </returns>
         Signal Import(FileInfo file);
+        Signal Import(FileInfo file, string template);
     }
 }

@@ -14,6 +14,10 @@ namespace SignalProcessor
         string GetImportTxtFilename();
         event EventHandler<EventArgs> ImportTxtFileQuery;
         
+        // Export
+        string GetExportTxtFilename();
+        event EventHandler<EventArgs> ExportTxtFileQuery;
+
         // Opened
         void OpenedSetItems(List<string> items);
         event EventHandler<EventArgs> OpenedRemoveQuery;

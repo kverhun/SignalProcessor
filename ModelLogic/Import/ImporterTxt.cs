@@ -27,5 +27,11 @@ namespace SignalProcessor.ModelLogic.Import
 
             return new Signal(values, file.Name.Remove(file.Name.Length - 4));
         }
+
+
+        public Signal Import(FileInfo file, string template)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
