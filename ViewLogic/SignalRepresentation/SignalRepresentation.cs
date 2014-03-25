@@ -54,11 +54,26 @@ namespace SignalProcessor.ViewLogic
             lblCurrentlyChosen.Content = args.Name;
             for (int i = 0; i < args.ChartCount; ++i)
             {
-                WindowsFormsHost host = new WindowsFormsHost();
+                WindowsForms.ScrollViewerWindowsFormsHost host = new WindowsForms.ScrollViewerWindowsFormsHost();
+                //WindowsFormsHost host = new WindowsFormsHost();
+                host.Margin = new Thickness(4);
                 host.Child = args.GetChart(i);
+
+                //DockPanel.SetDock(host, Dock.Bottom);
+
                 this.panelChart.Children.Add(host);
-                //this.panelChart.Children.Add(args.GetChart(i));
+
+                //for (int p = 0; p < 20; ++p)
+                //{
+                //    Button bt = new Button();
+                //    bt.Height = 30;
+                //    bt.Width = 40;
+                //    panelChart.Children.Add(bt);
+                //}
+
+                
             }
+            //this.panelChart.Children.Add(args.GetWChart(0));
 
 
         }
@@ -121,9 +136,9 @@ namespace SignalProcessor.ViewLogic
                 lblPoints.Content = "Points: " + args.Properties.Points.ToString();
                 panel.Children.Add(lblPoints);
 
-                Label lblDuration = new Label(); ;
-                lblDuration.Content = "Duration: " + args.Properties.Duration.ToString();
-                panel.Children.Add(lblDuration);
+                //Label lblDuration = new Label(); ;
+                //lblDuration.Content = "Duration: " + args.Properties.Duration.ToString();
+                //panel.Children.Add(lblDuration);
 
                 Label lblAverage = new Label();
                 lblAverage.Content = "Average: " + args.Properties.Average.ToString();
@@ -295,7 +310,7 @@ namespace SignalProcessor.ViewLogic
             }
             catch
             {
-                return;
+                MessageBox.Show("Wrong data");
             }
         }
 
@@ -309,7 +324,7 @@ namespace SignalProcessor.ViewLogic
             }
             catch
             {
-                return;
+                MessageBox.Show("Wrong data");
             }
             
 

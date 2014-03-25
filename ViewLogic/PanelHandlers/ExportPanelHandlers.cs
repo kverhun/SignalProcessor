@@ -48,7 +48,7 @@ namespace SignalProcessor.ViewLogic
             if (this.txtTxtExportFileName.Text == "")
                 this.txtTxtExportFileName.Text = this.lblCurrentlyChosen.Content + ".txt";
 
-            return this.exportTxtFoldername.Text + "\\" + this.lblCurrentlyChosen.Content + ".txt";
+            return this.exportTxtFoldername.Text + "\\" + this.txtTxtExportFileName.Text + ".txt";
         }
 
 

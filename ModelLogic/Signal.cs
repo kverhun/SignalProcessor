@@ -4,12 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
+
 namespace SignalProcessor.ModelLogic
 {
 
     /// <summary>
     /// class represents signal (time series)
     /// </summary>
+    
+    [Serializable]
     public partial class Signal
     {
 
@@ -245,6 +250,14 @@ namespace SignalProcessor.ModelLogic
         {
             get;
             set;
+        }
+
+        public string SerializeBin()
+        {
+            string res = string.Empty;
+            BinaryFormatter bf = new BinaryFormatter();
+
+            return res;
         }
 
     }

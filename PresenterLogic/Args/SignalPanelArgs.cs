@@ -32,6 +32,10 @@ namespace SignalProcessor.PresenterLogic
             Chart chart = ChartConstructor.Construct(signal);
             charts.Add(chart);
 
+            wpfCharts = new List<System.Windows.Controls.DataVisualization.Charting.Chart>();
+            System.Windows.Controls.DataVisualization.Charting.Chart wchart = ChartConstructor.WpfConstruct(signal);
+            wpfCharts.Add(wchart);
+
             foreach (int lvl in lvlShowed)
             {
                 Chart chartWave = ChartConstructor.Construct(signal.GetWavelet(lvl), "Wavelet transfort level " + lvl.ToString());
@@ -73,6 +77,14 @@ namespace SignalProcessor.PresenterLogic
                 return charts[index];
         }
 
+        public System.Windows.Controls.DataVisualization.Charting.Chart GetWChart(int index)
+        {
+            if (wpfCharts.Count <= index)
+                return null;
+            else
+                return wpfCharts[index];
+        }
+
         public int ChartCount
         {
             get
@@ -82,7 +94,7 @@ namespace SignalProcessor.PresenterLogic
         }
 
         private List<Chart> charts;
-
+        private List<System.Windows.Controls.DataVisualization.Charting.Chart> wpfCharts;
 
     }
 }

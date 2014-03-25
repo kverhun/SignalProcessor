@@ -27,6 +27,8 @@ namespace SignalProcessor.PresenterLogic
             
             chart.ChartAreas.Add(area);
             chart.Series.Add(series);
+            chart.ChartAreas[0].AxisX.Title = "Time";
+            chart.ChartAreas[0].AxisY.Title = "Value";
             return chart;
         }
 
@@ -34,18 +36,22 @@ namespace SignalProcessor.PresenterLogic
         {
             Chart chart = new Chart();
             ChartArea area = new ChartArea();
+            chart.Titles.Add(name);
             Series series = new Series();
             series.Points.DataBindXY(data.T, data.X);
             series.ChartType = SeriesChartType.Line;
-            chart.Text = name;
+            //chart.Text = name;
             chart.ChartAreas.Add(area);
             chart.Series.Add(series);
+            chart.ChartAreas[0].AxisX.Title = "Time";
+            chart.ChartAreas[0].AxisY.Title = "Value";
             return chart;
         }
 
         public static Chart Construct(Signal signal)
         {
             Chart chart = new Chart();
+            chart.Titles.Add(signal.Name);
             ChartArea area = new ChartArea();
             Series series = new Series(signal.Name);
             series.Points.DataBindXY(signal.T, signal.X);
@@ -54,6 +60,8 @@ namespace SignalProcessor.PresenterLogic
             chart.Text = signal.Name;
             chart.ChartAreas.Add(area);
             chart.Series.Add(series);
+            chart.ChartAreas[0].AxisX.Title = "Time";
+            chart.ChartAreas[0].AxisY.Title = "Value";
             return chart;
         }
 
@@ -62,8 +70,19 @@ namespace SignalProcessor.PresenterLogic
             double[] T = new double[data.TArray.Length];
             for (int i = 0; i < data.TArray.Length; ++i)
                 T[i] = (double)data.TArray[i];
-            return Construct(new Signal(T, data.XArray));
+
+            Chart chart = Construct(new Signal(T, data.XArray));
+            chart.ChartAreas[0].AxisX.Title = "Period";
+            chart.ChartAreas[0].AxisY.Title = "PDM Value";
+            chart.Series[0].BorderWidth = 2;
+            chart.Titles.Clear();
+            chart.Titles.Add("PDM result");
+            //chart.Titles[0].TextStyle = TextStyle.Default;
+            
+
+            return chart;
         }
+
         
 
     }

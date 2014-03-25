@@ -25,9 +25,9 @@ namespace SignalProcessor.ViewLogic
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            
-            
-            return 3*(double)value;
+            if (parameter == null)
+                return 3 * (double)value;
+            else return (int)parameter + (int)value;
         }
     }
 
@@ -36,14 +36,16 @@ namespace SignalProcessor.ViewLogic
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             double hei = (double)value;
-            return (double)(hei - 250);
+            if (parameter == null)
+                return (double)(hei - 250);
+            else return (hei - (int)parameter);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-
-
-            return 250 + (double)value;
+            if (parameter == null)
+                return 250 + (double)value;
+            else return (int)parameter + (int)value;
         }
     }
 

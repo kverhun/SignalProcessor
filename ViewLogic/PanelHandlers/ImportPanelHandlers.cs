@@ -37,7 +37,14 @@ namespace SignalProcessor.ViewLogic
 
         private void btnImportTxt_Click(object sender, RoutedEventArgs e)
         {
-            ImportTxtFileQuery(sender, e);
+            try
+            {
+                ImportTxtFileQuery(sender, e);
+            }
+            catch
+            {
+                MessageBox.Show("Incorect file format");
+            }
         }
 
 

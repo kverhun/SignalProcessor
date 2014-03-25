@@ -25,12 +25,12 @@ namespace SignalProcessor.ViewLogic
     {
         private void btnFile_Click(object sender, RoutedEventArgs e)
         {
-            MakeButtonCheckedOfPanel(btnFile, FilePanel);
+            // MakeButtonCheckedOfPanel(btnFile, FilePanel);
         }
 
         private void btnOpen_Click(object sender, RoutedEventArgs e)
         {
-            MakeButtonCheckedOfPanel(btnOpen, OpenPanel);
+            //MakeButtonCheckedOfPanel(btnOpen, OpenPanel);
         }
 
         private void btnImport_Click(object sender, RoutedEventArgs e)
@@ -73,6 +73,12 @@ namespace SignalProcessor.ViewLogic
                 if (i != index) children[i].Visibility = Visibility.Collapsed;
         }
 
+
+
+        public void ShowErrorMessage(string msg)
+        {
+            MessageBox.Show(msg);    
+        }
     }
 
 }

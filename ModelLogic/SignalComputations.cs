@@ -43,7 +43,7 @@ namespace SignalProcessor.ModelLogic
 
         private int GetWaveletLevelsAvailable()
         {
-            return (int)Math.Floor(Math.Log(t.Length, 2));
+            return (int)Math.Floor(Math.Log(t.Length, 2)) - 1;
         }
 
         private SignalData GetWaveletLevel(int lvl)
@@ -78,6 +78,9 @@ namespace SignalProcessor.ModelLogic
             return res / (array.Length + 1);
         }
 
+
+         
+
         private double CountPDM(double[] array, double variance, int T)
         {
             double res = 0;
@@ -89,6 +92,7 @@ namespace SignalProcessor.ModelLogic
             int periods = (int)Math.Truncate((double)lng / T);
             double[] s = new double[T];
             double[,] tempData = new double[T, periods];
+            
             for (int i = 0; i < T; ++i)
             {
                 for (int j = 0; j < periods; ++j)

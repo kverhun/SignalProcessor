@@ -13,7 +13,7 @@ namespace SignalProcessor.ModelLogic
 {
 
     /// <summary>
-    /// The model class encapsulate all logic
+    /// The model class encapsulates all logic
     /// </summary>
     class Model
     {
@@ -22,6 +22,8 @@ namespace SignalProcessor.ModelLogic
             importerTxt = new ImporterTxt();
             exporterTxt = new ExporterTxt();
         }
+
+        
 
         public Signal ImportTxt(string fname)
         {

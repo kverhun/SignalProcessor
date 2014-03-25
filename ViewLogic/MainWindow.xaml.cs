@@ -23,25 +23,32 @@ namespace SignalProcessor.ViewLogic
     public partial class MainWindow : Window, IView
     {
 
-        private ViewModel vm;
         private Presenter presenter;
         private VisibilityToColorConverter visibitityToColorCoverter;
         private WidthConverter widthConverter;
         public MainWindow()
         {
-            this.vm = new ViewModel(this);
             this.presenter = new Presenter(this);
             this.widthConverter = new WidthConverter();
+           
             this.visibitityToColorCoverter = new VisibilityToColorConverter();
             InitializeComponent();
+
+            CreateBindings();
+           
 
         }
 
 
         private void CreateBindings()
         {
-
-            
+            // set dockpanel height
+            Binding b = new Binding();
+            b.Source = this;
+            b.Path = new PropertyPath("Height");
+            b.Converter = new HeightConverter();
+            b.ConverterParameter = 55;
+            this.dockPanel.SetBinding(DockPanel.HeightProperty, b);
         }
 
         private void StackPanel_MouseDown(object sender, MouseButtonEventArgs e)

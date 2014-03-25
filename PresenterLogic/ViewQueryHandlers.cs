@@ -62,16 +62,17 @@ namespace SignalProcessor.PresenterLogic
             this.signalPropertyArgs.Remove(name);
             this.signalLayoutArgs.Remove(name);
             this.signalWaveletShowed.Remove(name);
-            if (this.current == name)
-            {
-                if (signals.Count != 0)
-                    OpenedChoose(signals.Keys.First(), null);
-                else
-                {
+            this.signalPDMData.Remove(name);
+            //if (this.current == name)
+            //{
+            //    if (signals.Count != 0)
+            //        OpenedChoose(signals.Keys.First(), null);
+            //    else
+            //    {
                    
-                }
+            //    }
                 
-            }
+            //}
             OpenedListUpdate();
         }
 
@@ -195,6 +196,7 @@ namespace SignalProcessor.PresenterLogic
 
 
             SignalData dt = signals[current].GetWavelet(lvl);
+            dt.Level = lvl;
             Signal signal = new Signal(dt, signals[current].Name + "_wavelet_level_" + lvl.ToString());
             this.SignalAdd(signal, signal.Name);
             this.OpenedListUpdate();
@@ -202,8 +204,8 @@ namespace SignalProcessor.PresenterLogic
 
         private void PropertiesShowPDMQuery(object sender, EventArgs e)
         {
-            int T1;
-            int T2;
+            int T1 = 0;
+            int T2 = 0;
             string strT1;
             string strT2;
             string arg = sender as string;
@@ -211,8 +213,47 @@ namespace SignalProcessor.PresenterLogic
             {
                 strT1 = arg.Remove(arg.IndexOf('_'));
                 strT2 = arg.Remove(0, arg.IndexOf('_') + 1);
-                T1 = int.Parse(strT1);
-                T2 = int.Parse(strT2);
+                try
+                {
+                    T1 = int.Parse(strT1);
+                }
+                catch
+                {
+                    view.ShowErrorMessage("Incorrect input in left window bound!");
+                    return;
+                }
+
+                try
+                {
+                    T2 = int.Parse(strT2);
+                }
+                catch
+                {
+                    view.ShowErrorMessage("Incorrect input in right window bound!");
+                    return;
+                }
+
+                if (T1 >= T2)
+                {
+                    view.ShowErrorMessage("Incorrect window bounds!");
+                    return;
+                }
+
+                if (T1 < 2)
+                {
+                    view.ShowErrorMessage("Can not search for period T=1!");
+                    return;
+                }
+
+                signals[current].CountProperities();
+
+                double ratio = (double)signals[current].Properities.Duration / T2;
+                if (ratio < 3)
+                {
+                    view.ShowErrorMessage("Need at least 3 windows in signal!\nToo long periods entered.");
+                    return;
+                }
+                
                 PDMData data = signals[current].GetPDM(T1, T2);
                 signalPDMData[current] = data;
                 this.PropertyLayoutArgsUpdate(current);
@@ -222,6 +263,7 @@ namespace SignalProcessor.PresenterLogic
             }
             catch
             {
+                view.ShowErrorMessage("Incorect data input!");
                 return;
             }
         }

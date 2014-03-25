@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Globalization;
 using System.IO;
 
 namespace SignalProcessor.ModelLogic.Export
@@ -17,7 +17,7 @@ namespace SignalProcessor.ModelLogic.Export
             using (StreamWriter sw = file.CreateText())
             {
                 for (int i = 0; i < signal.T.Length; ++i)
-                    sw.WriteLine(signal.X[i]);
+                    sw.WriteLine(signal.X[i].ToString(CultureInfo.InvariantCulture));
             }
             
         }

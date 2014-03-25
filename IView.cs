@@ -33,5 +33,8 @@ namespace SignalProcessor
         event EventHandler<EventArgs> CountWaveletQuery;
         event EventHandler<EventArgs> SwitchWaveletStateQuery;
         event EventHandler<EventArgs> OpenWaveletQuery;
+
+        // error handling
+        void ShowErrorMessage(string msg);
     }
 }

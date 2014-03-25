@@ -26,7 +26,6 @@ namespace SignalProcessor.ModelLogic
         }
 
 
-
         public double[] X
         {
             get;
@@ -37,6 +36,12 @@ namespace SignalProcessor.ModelLogic
         {
             get;
             private set;
+        }
+
+        public int Level
+        {
+            get;
+            set;
         }
 
     }
