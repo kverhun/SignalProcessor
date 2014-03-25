@@ -21,6 +21,7 @@ namespace SignalProcessor.PresenterLogic
             signals.Add(name, signal);
             signalWaveletShowed.Add(name, new List<int>());
             signalPDMData.Add(name, null);
+            System.Windows.Forms.MessageBox.Show("Signal \"" + name + "\" successfully added");
         }
 
 
@@ -31,7 +32,17 @@ namespace SignalProcessor.PresenterLogic
             string txtFileName = view.GetImportTxtFilename();
             //model.ImportFile(txtFileName);
             //OpenedListUpdate();
-            Signal signal = model.ImportTxt(txtFileName);
+            Signal signal;
+            try
+            {
+                signal = model.ImportTxt(txtFileName);
+            }
+            catch (Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.Message);
+                return;
+            }
+
             if (signal == null)
                 return;
             try
@@ -39,10 +50,12 @@ namespace SignalProcessor.PresenterLogic
                 //signals.Add(signal.Name, signal);
                 SignalAdd(signal, signal.Name);
                 this.OpenedListUpdate();
+                
             }
-            catch
+            catch (Exception ex)
             {
                 // message to be generated
+                System.Windows.Forms.MessageBox.Show("Such signal already exists!");
             }
         }
 
@@ -73,6 +86,18 @@ namespace SignalProcessor.PresenterLogic
             //    }
                 
             //}
+            if (this.current == name)
+            {
+                if (signals.Count > 0)
+                {
+                    OpenedChoose(signals.Keys.First(), null);
+                }
+                else
+                {
+                    OpenedChoose(null, null);
+                }
+            }
+            System.Windows.Forms.MessageBox.Show("Signal \"" + name + "\" successfully removed");
             OpenedListUpdate();
         }
 
@@ -80,15 +105,20 @@ namespace SignalProcessor.PresenterLogic
         {
             string name = sender as string;
             if (name == null)
+            {
+                view.SignalLayout(null);
+                view.PropertiesLayout(null);
                 return;
-
+            }
+            
+            this.current = name;
+            
             // TODO here: tell model to change currenly chosen signal
             //Signal current = model.ChooseItem(name);
             //SignalPresenter presenter = new SignalPresenter(current);
             //view.SignalLayout(presenter);
             
             
-            this.current = name;
             // here we have to tell view to show signal and it's properties
             view.SignalLayout(GetSignalArgs(current));
             view.PropertiesLayout(GetPropertyArgs(current));

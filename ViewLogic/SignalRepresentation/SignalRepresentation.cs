@@ -49,8 +49,12 @@ namespace SignalProcessor.ViewLogic
 
         public void SignalLayout(SignalPanelArgs args)
         {
-
             panelChart.Children.Clear();
+            if (args == null)
+            {
+                lblCurrentlyChosen.Content = "";
+                return;
+            }
             lblCurrentlyChosen.Content = args.Name;
             for (int i = 0; i < args.ChartCount; ++i)
             {
@@ -80,6 +84,7 @@ namespace SignalProcessor.ViewLogic
 
         public void PropertiesLayout(PropertyPanelArgs args)
         {
+            
             this.PropertyPanelUpdate(GetPropertiesPanel(args));
         }
 
@@ -101,6 +106,11 @@ namespace SignalProcessor.ViewLogic
 
         private StackPanel GetPropertiesPanel(PropertyPanelArgs args)
         {
+            if (args == null)
+            {
+                return new StackPanel();
+            }
+
             try
             {
                 this.UnregisterName("txtT1");

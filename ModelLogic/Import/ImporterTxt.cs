@@ -25,7 +25,19 @@ namespace SignalProcessor.ModelLogic.Import
             for (int i = 0; i < txtValues.Length; ++i)
                 values[i] = double.Parse(txtValues[i]);
 
-            return new Signal(values, file.Name.Remove(file.Name.Length - 4));
+            if (values.Length < 2)
+            {
+                throw new Exception("Should be at least 2 values in file!");
+            }
+            try
+            {
+                var s = new Signal(values, file.Name.Remove(file.Name.Length - 4));
+                return s;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
 

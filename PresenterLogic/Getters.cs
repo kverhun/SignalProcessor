@@ -28,6 +28,7 @@ namespace SignalProcessor.PresenterLogic
 
         private SignalPanelArgs GetSignalArgs(string name)
         {
+            if (name == null) return null;
             try
             {
                 return signalLayoutArgs[name];

@@ -32,9 +32,9 @@ namespace SignalProcessor.ModelLogic
             {
                 return importerTxt.Import(fl);
             }
-            catch
+            catch (Exception ex)
             {
-                return null;
+                throw ex;
             }            
         }
 
